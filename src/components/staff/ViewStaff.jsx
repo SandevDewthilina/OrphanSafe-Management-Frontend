@@ -35,7 +35,7 @@ const ViewStaff = () => {
       <Col sm={12}>
         <MyCard>
           <MyCardHeader>
-            Staff Details<Button onClick={() => handleExport()}>Export</Button>
+            Staff Details
           </MyCardHeader>
           <MyCardBody>
             {isError && (
