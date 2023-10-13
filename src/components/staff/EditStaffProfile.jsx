@@ -22,20 +22,14 @@ const EditStaffForm = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      setFullName(data.childProfile.FullName || "");
-      setDOB(data.childProfile.DOB || "");
-      setGender(data.childProfile.Gender || "");
-      setDateOfAdmission(data.childProfile.DateOfAdmission || "");
-      setCountry(data.childProfile.Country || "");
-      setCity(data.childProfile.City || "");
-      setNationality(data.childProfile.Nationality || "");
-      setLanguage(data.childProfile.Language || "");
-      setRemark(data.childProfile.Remark || "");
-      setMedicalDesc(data.childProfile.MedicalDesc || "");
-      setBirthFather(data.childProfile.BirthFather || "");
-      setBirthMother(data.childProfile.BirthMother || "");
-      setReasonForPlacement(data.childProfile.ReasonForPlacement || "");
-      setOrphanageName(data.childProfile.OrphanageName || "");
+      setName(data.staffProfile.UserName || "");
+      setPhoneNumber(data.staffProfile.PhoneNumber || "");
+      setEmail(data.staffProfile.Email || "");
+      setOrphanageName(data.staffProfile.OrphanageName || "");
+      setAddress(data.staffProfile.Address || "");
+      setNic(data.staffProfile.NIC || "");
+      setGender(data.staffProfile.Gender || "");
+      setDOB(data.staffProfile.DOB || "");
     }
   }, [isSuccess, data]);
 
