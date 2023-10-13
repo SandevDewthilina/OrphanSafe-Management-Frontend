@@ -34,7 +34,6 @@ const ViewStaff = () => {
     // Initialize DataTable
     $(tableRef.current).DataTable();
   }, [data]);
-
   return (
     <Row>
       <Col sm={12}>
@@ -75,6 +74,7 @@ const ViewStaff = () => {
                           <Link
                             to={`/monitoring/viewStaff/overview?staffId=${data.UserId}`}
                           >
+
                             <a href="#">{data.UserName}</a>
                           </Link>
                         </td>
