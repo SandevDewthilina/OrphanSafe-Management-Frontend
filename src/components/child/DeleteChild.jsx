@@ -18,15 +18,13 @@ const DeleteChild = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const formData = new FormData();
-      formData.append("otherInfo", JSON.stringify({
+      const res = await DeleteChild({
         commitMessage: commitMessage,
         committedByUserName: committedByUserName,
         childId: paramValue,
         
         
-      }));
-      const res = await DeleteChild(formData).unwrap();
+      }).unwrap();
 
       toast.success(" Staff profile Registration completed");
     } catch (error) {

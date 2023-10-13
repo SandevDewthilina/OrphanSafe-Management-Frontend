@@ -20,9 +20,14 @@ const ViewStaff = () => {
   const [deleteRole] = useDeleteStaffProfileMutation();
 
   const handleDelete = async (roleId) => {
-    const resp = await deleteRole({ userIdToDelete: roleId });
-    if (isError) toast.error(resp.data.message);
-    if (isSuccess) refetch();
+    if (confirm('Are you sure?')) {
+      const resp = await deleteRole({ userIdToDelete: roleId });
+      if (isError) toast.error(resp.data.message);
+      if (isSuccess) refetch();
+    } else {
+      //action cancelled
+      console.log('Cancel is clicked.');
+    }
   };
 
   useEffect(() => {
