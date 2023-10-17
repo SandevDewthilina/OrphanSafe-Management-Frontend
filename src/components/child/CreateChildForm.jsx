@@ -77,7 +77,7 @@ const CreateChildForm = () => {
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Full Name</Form.Label>
         <Form.Text className="text-muted">
-        *identifier for the child
+        *name of the child
         </Form.Text>
         <Form.Control 
         type="text" 
