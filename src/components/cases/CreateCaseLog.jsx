@@ -33,12 +33,14 @@ const CreateCaseLogs = () => {
           try {
             const formData = new FormData();
             formData.append("caseLogDoc", caseLogDoc);
-            formData.append("otherInfo", JSON.stringify({
-              caseId: selectedOption.value,
-              name: logName,
-              description: logDescription,
-            }));
-            console.log(isError);
+            formData.append(
+              "otherInfo",
+              JSON.stringify({
+                caseId: selectedOption.value,
+                name: logName,
+                description: logDescription,
+              })
+            );
             const res = await createCaseLog(formData).unwrap();
             if (isError) {
               toast.error(res.message);

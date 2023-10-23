@@ -3,8 +3,11 @@ import { Button, Col, Form, Row, Table, Card } from "react-bootstrap";
 import { MyCard, MyCardBody, MyCardHeader } from "../MyCard";
 import "../../index.css";
 import "../../assets/css/dashbord/dashboard.css";
+import { useGetOngoingCaseQuery } from "../../slices/caseApiSlice";
 
 const DashboardOverview = () => {
+  const { data, isError, isSuccess, isLoading } = useGetOngoingCaseQuery();
+
   return (
     <div className="responsive">
       <div className="cards">
@@ -91,44 +94,22 @@ const DashboardOverview = () => {
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Approval Description</th>
+                    <th>Case Name</th>
                     <th>Publish Date</th>
-                    <th>State</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                    <td>
-                      <i>Pending</i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                    <td>
-                      <i>Pending</i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                    <td>
-                      <i>Pending</i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                    <td>
-                      <i>Pending</i>
-                    </td>
-                  </tr>
+                  {isSuccess && data.cases ? (
+                    data.cases.map((data) => (
+                      <tr>
+                        <td>{data.Id}</td>
+                        <td>{data.CaseName}</td>
+                        <td>{data.CreatedAt}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <div>Loading</div>
+                  )}
                 </tbody>
               </Table>
             </MyCard>
