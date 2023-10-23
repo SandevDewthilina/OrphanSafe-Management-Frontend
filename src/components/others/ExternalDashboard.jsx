@@ -1,6 +1,4 @@
-import React from "react";
-import { Button, Col, Form, Row, Table, Card, Image } from "react-bootstrap";
-import { MyCard, MyCardBody, MyCardHeader } from "../MyCard";
+import { Col, Row, Card } from "react-bootstrap";
 import "../../index.css";
 import "../../assets/css/dashbord/dashboard.css";
 
@@ -35,10 +33,8 @@ const ExternalDashboard = () => {
                     Assigned child Profiles
                   </Col>
                 </Row>
-
-                {EDchildProfileResponse.isLoading ? (
-                  <div>Loading</div>
-                ) : (
+                {EDchildProfileResponse.isLoading && <div>Loading</div>}{" "}
+                {EDchildProfileResponse.isSuccess && (
                   <div className="CardNumber">
                     {EDchildProfileResponse.data.count}
                   </div>
@@ -59,9 +55,8 @@ const ExternalDashboard = () => {
                 </Row>
 
                 <div className="CardNumber">
-                  {EDpendingCaseResponse.isLoading ? (
-                    <div>Loading</div>
-                  ) : (
+                  {EDpendingCaseResponse.isLoading && <div>Loading</div>}{" "}
+                  {EDchildProfileResponse.isSuccess && (
                     <div className="CardNumber">
                       {EDpendingCaseResponse.data.count}
                     </div>
@@ -83,9 +78,8 @@ const ExternalDashboard = () => {
                 </Row>
 
                 <div className="CardNumber">
-                  {EDcaseAssignResponse.isLoading ? (
-                    <div>Loading</div>
-                  ) : (
+                  {EDcaseAssignResponse.isLoading && <div>Loading</div>} ({" "}
+                  {EDchildProfileResponse.isSuccess && (
                     <div className="CardNumber">
                       {EDcaseAssignResponse.data.count}
                     </div>

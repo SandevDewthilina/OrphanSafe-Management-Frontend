@@ -1,12 +1,11 @@
-import React from "react";
-import { Button, Col, Form, Row, Table, Card } from "react-bootstrap";
-import { MyCard, MyCardBody, MyCardHeader } from "../MyCard";
+import { Col, Row, Table, Card } from "react-bootstrap";
+import { MyCard, MyCardHeader } from "../MyCard";
 import "../../index.css";
 import "../../assets/css/dashbord/dashboard.css";
 import { useGetOngoingCaseQuery } from "../../slices/caseApiSlice";
 
 const DashboardOverview = () => {
-  const { data, isError, isSuccess, isLoading } = useGetOngoingCaseQuery();
+  const { data, isSuccess } = useGetOngoingCaseQuery();
 
   return (
     <div className="responsive">
