@@ -4,7 +4,8 @@ import { MyCard, MyCardBody, MyCardHeader } from "../../components/MyCard";
 import {
   useViewChildProfilesQuery,
 } from "../../slices/profileApiSlice";
-import "../../assets/css/profileIntro.css"
+//import "../../assets/css/profileIntro.css";
+//import "../../assets/css/profileChild.css"
 
 const ChildProfileContent = () => {
   

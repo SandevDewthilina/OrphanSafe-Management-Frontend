@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Table, Row, Col } from "react-bootstrap";
 import { MyCard, MyCardBody, MyCardHeader } from "../../components/MyCard";
 import { useViewSocialWorkerProfilesQuery } from "../../slices/profileApiSlice";
-import "../../assets/css/profileIntro.css";
+//import "../../assets/css/profileIntro.css";
 
 const SocialWorkerProfileContent = () => {
 

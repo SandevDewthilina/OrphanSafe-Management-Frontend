@@ -1,0 +1,141 @@
+.name-header {
+    font-weight: 700;
+    font-size: 30px;
+    margin-top: 120px;
+    margin-bottom: 5px;
+    margin-left: 60px;
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgb(68, 68, 68);
+  }
+  
+  .name-sub {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 60px;
+    font-weight: 400;
+    font-size: 20px;
+    color: #bababa;
+  }
+  
+  .profileImage {
+    background-image: url("https://i.guim.co.uk/img/media/60ef89fa5cc775cea493523a8c4b354c8f58faf2/153_0_3288_1974/master/3288.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=a68540f4bf558e4f7e4887d14a934547");
+    background-size: 300px 300px;
+    width: 300px;
+    height: 300px;
+    border-radius: 200px;
+    border-color: #bababa;
+    border-style: solid;
+    border-width: 10px;
+    box-shadow: 1px 1px 4px black;
+  }
+  
+  .background {
+    background-color: #005ed4;
+    height: 220px;
+  }
+  
+  .profile {
+    padding-top: 60px;
+    padding-left: 100px;
+    padding-right: 50px;
+  }
+  
+  .card {
+    background-color: #f2f4f3;
+    height: 400px;
+    border-color: transparent;
+  }
+  
+  .td {
+    width: 50%;
+  }
+  
+  @media (max-width: 992px) {
+    .profileImage {
+      background-image: url("https://i.guim.co.uk/img/media/60ef89fa5cc775cea493523a8c4b354c8f58faf2/153_0_3288_1974/master/3288.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=a68540f4bf558e4f7e4887d14a934547");
+      background-size: 200px 200px;
+      margin-top: 10%;
+      width: 200px;
+      height: 200px;
+      border-radius: 100px;
+      margin-bottom: 0px;
+      border-color: #bababa;
+      border-style: solid;
+      border-width: 5px;
+    }
+    .name-header {
+      font-weight: 700;
+      font-size: 20px;
+      margin-top: 140px;
+      margin-bottom: 5px;
+      margin-left: 80px;
+      color: #ffffff;
+      text-shadow: 0px 0px 0px black;
+    }
+  
+    .name-sub {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 80px;
+    font-weight: 400;
+    font-size: 15px;
+    color: #bababa;
+  }
+    .card {
+      background-color: #f2f4f3;
+      height: 300px;
+      border-color: transparent;
+    }
+    .background {
+      background-color: #005ed4;
+      height: 200px;
+    }
+    .profile {
+      padding-top: 30px;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .profileImage {
+      background-image: url("https://i.guim.co.uk/img/media/60ef89fa5cc775cea493523a8c4b354c8f58faf2/153_0_3288_1974/master/3288.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=a68540f4bf558e4f7e4887d14a934547");
+      background-size: 200px 200px;
+      width: 200px;
+      height: 200px;
+      border-radius: 100px;
+      margin-top: 15%;
+      margin: auto;
+      border-color: #bababa;
+      border-style: solid;
+      border-width: 5px;
+    }
+  
+    .profile {
+      padding: 20px;
+    }
+    .name-header {
+      font-weight: 700;
+      font-size: 20px;
+      margin-top: 20px;
+      color: #000000;
+      text-shadow: 0px 0px 0px black;
+    }
+    .name-sub {
+      margin-top: 0px;
+      font-weight: 200;
+      font-size: 12px;
+      color: #bababa;
+    }
+  
+    .card {
+      background-color: #f2f4f3;
+      height: 350px;
+      border-color: transparent;
+    }
+    .background {
+      background-color: #005ed4;
+      height: 200px;
+    }
+  }
+  

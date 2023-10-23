@@ -18,7 +18,7 @@
 }
 
 .profileImage {
-  background-image: url("https://i.guim.co.uk/img/media/60ef89fa5cc775cea493523a8c4b354c8f58faf2/153_0_3288_1974/master/3288.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=a68540f4bf558e4f7e4887d14a934547");
+  background-image: url("https://t4.ftcdn.net/jpg/05/76/69/67/240_F_576696751_socWMtehEWp4SyvDlJtstIAkBakkGTVk.jpg");
   background-size: 300px 300px;
   width: 300px;
   height: 300px;
@@ -52,7 +52,7 @@
 
 @media (max-width: 992px) {
   .profileImage {
-    background-image: url("https://i.guim.co.uk/img/media/60ef89fa5cc775cea493523a8c4b354c8f58faf2/153_0_3288_1974/master/3288.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=a68540f4bf558e4f7e4887d14a934547");
+    background-image: url("https://t4.ftcdn.net/jpg/05/76/69/67/240_F_576696751_socWMtehEWp4SyvDlJtstIAkBakkGTVk.jpg");
     background-size: 200px 200px;
     margin-top: 10%;
     width: 200px;
@@ -99,7 +99,7 @@
 
 @media (max-width: 576px) {
   .profileImage {
-    background-image: url("https://i.guim.co.uk/img/media/60ef89fa5cc775cea493523a8c4b354c8f58faf2/153_0_3288_1974/master/3288.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=a68540f4bf558e4f7e4887d14a934547");
+    background-image: url("https://t4.ftcdn.net/jpg/05/76/69/67/240_F_576696751_socWMtehEWp4SyvDlJtstIAkBakkGTVk.jpg");
     background-size: 200px 200px;
     width: 200px;
     height: 200px;
