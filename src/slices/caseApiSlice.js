@@ -11,6 +11,10 @@ import {
   DELETE_CASE_LOG_URL,
   UPDATE_CASE_LOG_URL,
   GET_CASE_LOG_BY_LOGID_URL,
+  GET_ONGOING_CASE_URL,
+  GET_EXTERNAL_DASHBOARD_CHILD_PROFILES,
+  GET_EXTERNAL_DASHBOARD_PENDING_CASE,
+  GET_EXTERNAL_DASHBOARD_CASE_ASSIGN,
 } from "../config";
 
 export const caseApiSlice = apiSlice.injectEndpoints({
@@ -77,6 +81,33 @@ export const caseApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
+    getOngoingCase: builder.query({
+      query: (data) => ({
+        url: GET_ONGOING_CASE_URL,
+        method: "GET",
+      }),
+    }),
+
+    getExternalDashboardChildProfiles: builder.query({
+      query: (data) => ({
+        url: GET_EXTERNAL_DASHBOARD_CHILD_PROFILES,
+        method: "GET",
+      }),
+    }),
+
+    getExternalDashboardPendingCase: builder.query({
+      query: (data) => ({
+        url: GET_EXTERNAL_DASHBOARD_PENDING_CASE,
+        method: "GET",
+      }),
+    }),
+    getExternalDashboardCaseAssign: builder.query({
+      query: (data) => ({
+        url: GET_EXTERNAL_DASHBOARD_CASE_ASSIGN,
+        method: "GET",
+      }),
+    }),
+
     updateCaseState: builder.mutation({
       query: (data) => ({
         url: UPDATE_CASE_STATE_URL,
@@ -107,4 +138,8 @@ export const {
   useDeleteCaseLogMutation,
   useUpdateCaseLogMutation,
   useGetCaseLogBylogIdQuery,
+  useGetOngoingCaseQuery,
+  useGetExternalDashboardCaseAssignQuery,
+  useGetExternalDashboardChildProfilesQuery,
+  useGetExternalDashboardPendingCaseQuery,
 } = caseApiSlice;
