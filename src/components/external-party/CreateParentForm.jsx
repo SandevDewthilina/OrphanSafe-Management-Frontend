@@ -10,7 +10,7 @@ const CreateParentForm = () => {
 
   const [email,setEmail]= useState("");
   const [password,setPassword]= useState("");
-  const [OrphanageName,setOrphanageName]= useState("");
+
   const [address,setAddress]= useState("");
 
   const [NameOfFather,setNameOfFather]= useState("");
@@ -59,7 +59,6 @@ const CreateParentForm = () => {
         phoneNumber:MobileOfFather,
         email: email,
         password: password,
-        OrphanageName: OrphanageName,
         address: address,
         nic: NICOfFather,
         gender: "MALE",
@@ -346,14 +345,14 @@ const CreateParentForm = () => {
                 onChange={(e) => setPassword(e.target.value)} />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicStaffName">
+              {/* <Form.Group className="mb-3" controlId="formBasicStaffName">
                 <Form.Label> Orphanage Name</Form.Label>
                 <Form.Text className="text-muted">
                   *name of the orphanage by which the parent got registered
                 </Form.Text>
                 <Form.Control type="text" placeholder="e.g. Little dreams Orphanage" 
                 onChange={(e) => setOrphanageName(e.target.value)}/>
-              </Form.Group>
+              </Form.Group> */}
 
 
 
