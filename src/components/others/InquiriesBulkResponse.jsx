@@ -33,11 +33,10 @@ const InquiriesBulkResponse = () => {
                 <thead>
                   <tr>
                     <th>Select</th>
-                    <th>Inquiry Number</th>
+                    <th>Inquiry ID</th>
                     <th >Date</th>
                     <th>Inquiry Subject</th>
                     <th>Inquiry Details</th>
-                    <th>Inquiry Document</th>
                     <th>Sender Name</th>
                   </tr>
                 </thead>
@@ -50,58 +49,17 @@ const InquiriesBulkResponse = () => {
                     <td>2023/09/01</td>
                     <td>Support Request</td>
                     <td>I'm having trouble with my account.</td>
-                    <td><a href="#" className="blue-button"style={{ fontSize: "14px"}}>View</a></td>
-                    <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
+                    {/* <td><a href="#" className="blue-button"style={{ fontSize: "14px"}}>View</a></td> */}
+                    {/* <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
                       <LinkContainer to="/admin/viewStaffProfile/overview">
                         <a href="#">bob Niles</a>
                       </LinkContainer>
-                    </td> 
-                  </tr>
-                  <tr>
-                  <td style={{ textAlign: 'center' }} >
-                    <Form.Check aria-label="option 1" style={{ transform: "scale(1.5)" }} />
-                    </td>
-                    <td>001</td>
-                    <td>2023/09/01</td>
-                    <td>Support Request</td>
-                    <td>I'm having trouble with my account.</td>
-                    <td><a href="#" className="blue-button"style={{ fontSize: "14px"}}>View</a></td>
+                    </td>  */}
                     <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                      <LinkContainer to="/admin/viewStaffProfile/overview">
-                        <a href="#">bob Niles</a>
-                      </LinkContainer>
+                        bob Niles
                     </td> 
                   </tr>
-                  <tr>
-                  <td style={{ textAlign: 'center' }} >
-                    <Form.Check aria-label="option 1" style={{ transform: "scale(1.5)" }} />
-                    </td>
-                    <td>001</td>
-                    <td>2023/09/01</td>
-                    <td>Support Request</td>
-                    <td>I'm having trouble with my account.</td>
-                    <td><a href="#" className="blue-button"style={{ fontSize: "14px"}}>View</a></td>
-                    <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                      <LinkContainer to="/admin/viewStaffProfile/overview">
-                        <a href="#">bob Niles</a>
-                      </LinkContainer>
-                    </td> 
-                  </tr>
-                  <tr>
-                  <td style={{ textAlign: 'center' }} >
-                    <Form.Check aria-label="option 1" style={{ transform: "scale(1.5)" }} />
-                    </td>
-                    <td>001</td>
-                    <td>2023/09/01</td>
-                    <td>Support Request</td>
-                    <td>I'm having trouble with my account.</td>
-                    <td><a href="#" className="blue-button"style={{ fontSize: "14px"}}>View</a></td>
-                    <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                      <LinkContainer to="/admin/viewStaffProfile/overview">
-                        <a href="#">bob Niles</a>
-                      </LinkContainer>
-                    </td> 
-                  </tr>
+                 
                  
                  
                 </tbody>

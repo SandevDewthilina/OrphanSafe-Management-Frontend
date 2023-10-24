@@ -63,7 +63,7 @@ const UserRoles = () => {
                         </div>
                       </div>
                       <div className="role-container-right d-flex justify-content-end align-items-center">
-                        <button className="my-btn-blue">edit</button>
+                        
                         <button
                           className="my-btn-danger"
                           onClick={() => handleDelete(role.Id)}
