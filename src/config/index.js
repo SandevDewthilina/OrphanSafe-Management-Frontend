@@ -11,9 +11,14 @@ export const GET_CASE_INVITATION_BY_USER_ID_URL =
 export const CREATE_CASE_URL = "/api/case/createCase";
 export const GET_CASE_LOGS_LIST_URL = "/api/case/getCaseLogsByCaseId";
 export const GET_CASE_LOG_BY_LOGID_URL = "/api/case/getCaseLogBycaseLogId";
-export const GET_EXTERNAL_DASHBOARD_CHILD_PROFILES = "/api/case/ExternalDashboardChildProfiles";
-export const GET_EXTERNAL_DASHBOARD_PENDING_CASE = "/api/case/ExternalDashboardPendingCase";
-export const GET_EXTERNAL_DASHBOARD_CASE_ASSIGN = "/api/case/ExternalDashboardCaseAssign";
+export const GET_EXTERNAL_DASHBOARD_CHILD_PROFILES =
+  "/api/case/ExternalDashboardChildProfiles";
+export const GET_EXTERNAL_DASHBOARD_PENDING_CASE =
+  "/api/case/ExternalDashboardPendingCase";
+export const GET_EXTERNAL_DASHBOARD_CASE_ASSIGN =
+  "/api/case/ExternalDashboardCaseAssign";
+export const GET_CASES_FOR_ORPHANAGE_URL = "/api/case/getCasesForOrphanage";
+export const GET_PENDING_CASE_URL = "/api/case/getPendingCaseForDashBoard";
 export const GET_ONGOING_CASE_URL = "/api/case/getOngoingCaseForDashBoard";
 export const CREATE_CASE_LOG_URL = "/api/case/createCaseLog";
 export const GET_CASE_LIST_BY_USERID_URL = "/api/case/getCaseListByUserId";
@@ -28,6 +33,12 @@ export const GET_SOCIAL_WORKER_NAME_LIST =
 
 export const GET_CHILD_LIST_URL = "/api/profile/getChildProfileList";
 export const GET_STAFF_LIST_URL = "/api/profile/getStaffProfileList";
+export const GET_STAFF_COUNT_FOR_ORPHANAGE_URL =
+  "/api/profile/getStaffCountForOrphanage";
+export const GET_PROFILE_COUNT_FOR_ORPHANAGE_URL =
+  "/api/profile/getProfileCountForOrphanage";
+export const GET_PARENT_COUNT_FOR_ORPHANAGE_URL =
+  "/api/profile/getParentCountForOrphanage";
 export const GET_SOCIAL_WORKER_LIST_URL =
   "/api/profile/getSocialWorkerProfileList";
 export const GET_PARENT_LIST_URL = "/api/profile/getParentProfileList";

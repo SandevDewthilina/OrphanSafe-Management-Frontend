@@ -11,7 +11,7 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userInfo && userInfo.roleName !== "orphanageManager") {
+    if (userInfo && userInfo.roleName !== "orphanageManager" && userInfo.roleName !== "orphanageStaff") {
       navigate("/auth/denied");
     }
 
@@ -84,7 +84,7 @@ const App = () => {
     pageTitle = pathToTitleMap[path];
   }
 
-  return userInfo && userInfo && userInfo.roleName === "orphanageManager" ? (
+  return userInfo && userInfo && (userInfo.roleName === "orphanageManager" || userInfo.roleName === "orphanageStaff") ? (
     <>
       <Header />
       <Sidebar />
