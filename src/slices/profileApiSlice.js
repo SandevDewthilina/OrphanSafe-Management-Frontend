@@ -27,6 +27,8 @@ import {
   GET_PROFILE_COUNT_FOR_ORPHANAGE_URL,
   GET_STAFF_COUNT_FOR_ORPHANAGE_URL,
   GET_PARENT_COUNT_FOR_ORPHANAGE_URL,
+  CREATE_FUND_URL,
+  CREATE_INQUIRY_URL
 } from "../config";
 
 export const profileApiSlice = apiSlice.injectEndpoints({
@@ -132,6 +134,21 @@ export const profileApiSlice = apiSlice.injectEndpoints({
     createParentProfile: builder.mutation({
       query: (data) => ({
         url: CREATE_PARENT_PROFILE_URL,
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+    createInquiry: builder.mutation({
+      query: (data) => ({
+        url: CREATE_INQUIRY_URL,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    createFund: builder.mutation({
+      query: (data) => ({
+        url: CREATE_FUND_URL,
         method: "POST",
         body: data,
       }),
@@ -250,6 +267,8 @@ export const {
   useCreateSocialWorkerProfileMutation,
   useCreateParentProfileMutation,
   useCreateChildProfileMutation,
+  useCreateInquiryMutation,
+  useCreateFundMutation,
   useDeleteChildProfileMutation,
   useDeleteStaffProfileMutation,
   useDeleteSocialWorkerProfileMutation,
