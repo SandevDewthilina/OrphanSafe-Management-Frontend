@@ -18,8 +18,8 @@ const CreateChildForm = () => {
   const [BirthFather,setBirthFather]= useState("");
   const [BirthMother,setBirthMother]= useState("");
   const [ReasonForPlacement,setReasonForPlacement]= useState("");
-  const [RegisteredBy,setRegisteredBy]= useState("");
-  const [OrphanageName,setOrphanageName]= useState("");
+  //const [RegisteredBy,setRegisteredBy]= useState("");
+  //const [OrphanageName,setOrphanageName]= useState("");
 
   const [MedicalDoc,setMedicalDoc]= useState(null);
   const [Photograph,setPhotograph]= useState(null);
@@ -55,8 +55,8 @@ const CreateChildForm = () => {
         BirthFather: BirthFather,
         BirthMother: BirthMother,
         ReasonForPlacement: ReasonForPlacement,
-        RegisteredBy: RegisteredBy,
-        OrphanageName : OrphanageName, 
+        //RegisteredBy: RegisteredBy,
+        //OrphanageName : OrphanageName, 
       }));
       const res = await registerChild(formData).unwrap();
 
@@ -270,14 +270,14 @@ const CreateChildForm = () => {
 
       <Form.Label className="form-subtitle">Registration Information</Form.Label>
 
-      <Form.Group className="mb-3" controlId="formBasicStaffName">
+      {/* <Form.Group className="mb-3" controlId="formBasicStaffName">
         <Form.Label>Registered by</Form.Label>
         <Form.Text className="text-muted">
         *name of the staff member who registered the child 
         </Form.Text>
         <Form.Control type="text" placeholder="e.g. Kalum Gamage" 
         onChange={(e) => setRegisteredBy(e.target.value)}/>
-      </Form.Group>
+      </Form.Group> */}
 
       
 
@@ -294,14 +294,14 @@ const CreateChildForm = () => {
          </Form.Group>
 
 
-      <Form.Group className="mb-3" controlId="formBasicStaffName">
+      {/* <Form.Group className="mb-3" controlId="formBasicStaffName">
         <Form.Label> Orphanage Name</Form.Label>
         <Form.Text className="text-muted">
         *name of the orphanage that the child is assigned
         </Form.Text>
         <Form.Control type="text" placeholder="e.g. Little dreams" 
         onChange={(e) => setOrphanageName(e.target.value)}/>
-      </Form.Group>
+      </Form.Group> */}
 
 
       
