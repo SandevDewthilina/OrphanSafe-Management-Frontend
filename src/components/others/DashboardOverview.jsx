@@ -2,11 +2,27 @@ import { Col, Row, Table, Card } from "react-bootstrap";
 import { MyCard, MyCardHeader } from "../MyCard";
 import "../../index.css";
 import "../../assets/css/dashbord/dashboard.css";
-import { useGetOngoingCaseQuery } from "../../slices/caseApiSlice";
+import {
+  useGetPendingCaseQuery,
+  useGetOngoingCaseQuery,
+  useGetCasesForOrphanageQuery,
+} from "../../slices/caseApiSlice";
+import {
+  useGetStaffCountForOrphanageQuery,
+  useGetProfileCountForOrphanageQuery,
+  useGetParentCountForOrphanageQuery,
+} from "../../slices/profileApiSlice";
 
 const DashboardOverview = () => {
-  const { data, isSuccess } = useGetOngoingCaseQuery();
-
+  const pendingRes = useGetPendingCaseQuery();
+  const ongoingRes = useGetOngoingCaseQuery();
+  const profileCount = useGetProfileCountForOrphanageQuery();
+  const staffCount = useGetStaffCountForOrphanageQuery();
+  const parentCount = useGetParentCountForOrphanageQuery();
+  const caseCount = useGetCasesForOrphanageQuery();
+  if (profileCount.isSuccess) {
+    console.log(profileCount.data);
+  }
   return (
     <div className="responsive">
       <div className="cards">
@@ -28,7 +44,13 @@ const DashboardOverview = () => {
                   </Col>
                 </Row>
 
-                <div className="CardNumber">56</div>
+                <div className="CardNumber">
+                  {profileCount.isLoading
+                    ? "Loading"
+                    : profileCount.isSuccess
+                    ? profileCount.data.count
+                    : "Error"}
+                </div>
                 <div className="CardItalic">Registered child profiles</div>
               </Card>
             </Col>
@@ -44,7 +66,13 @@ const DashboardOverview = () => {
                   </Col>
                 </Row>
 
-                <div className="CardNumber">12</div>
+                <div className="CardNumber">
+                  {staffCount.isLoading
+                    ? "Loading"
+                    : staffCount.isSuccess
+                    ? staffCount.data.count
+                    : "Error"}
+                </div>
                 <div className="CardItalic">Registered staff profiles</div>
               </Card>
             </Col>
@@ -56,12 +84,18 @@ const DashboardOverview = () => {
                       className="fa fa-heart"
                       style={{ fontSize: "30px", marginRight: "10px" }}
                     ></i>
-                    Ongoing Adoptions
+                    Parent Involves
                   </Col>
                 </Row>
 
-                <div className="CardNumber">56</div>
-                <div className="CardItalic">Registered child profiles</div>
+                <div className="CardNumber">
+                  {parentCount.isLoading
+                    ? "Loading"
+                    : parentCount.isSuccess
+                    ? parentCount.data.count
+                    : "Error"}
+                </div>
+                <div className="CardItalic">Adoption and Foster care</div>
               </Card>
             </Col>
             <Col md={3} sm={6} xs={12} style={{ marginBottom: "10px" }}>
@@ -76,7 +110,13 @@ const DashboardOverview = () => {
                   </Col>
                 </Row>
 
-                <div className="CardNumber">22</div>
+                <div className="CardNumber">
+                  {caseCount.isLoading
+                    ? "Loading"
+                    : caseCount.isSuccess
+                    ? caseCount.data.count
+                    : "Error"}
+                </div>
                 <div className="CardItalic">Registered child profiles</div>
               </Card>
             </Col>
@@ -98,8 +138,8 @@ const DashboardOverview = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {isSuccess && data.cases ? (
-                    data.cases.map((data) => (
+                  {pendingRes.isSuccess && pendingRes.data.cases ? (
+                    pendingRes.data.cases.map((data) => (
                       <tr>
                         <td>{data.Id}</td>
                         <td>{data.CaseName}</td>
@@ -121,31 +161,22 @@ const DashboardOverview = () => {
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Case Description</th>
+                    <th>Case Name</th>
                     <th>State Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
+                  {ongoingRes.isSuccess && ongoingRes.data.cases ? (
+                    ongoingRes.data.cases.map((data) => (
+                      <tr>
+                        <td>{data.Id}</td>
+                        <td>{data.CaseName}</td>
+                        <td>{data.CreatedAt.substring(0, 10)}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <div>Loading</div>
+                  )}
                 </tbody>
               </Table>
             </MyCard>

@@ -24,6 +24,9 @@ import {
   EDIT_STAFF_PROFILE_URL,
   EDIT_SOCIAL_WORKER_PROFILE_URL,
   EDIT_PARENT_PROFILE_URL,
+  GET_PROFILE_COUNT_FOR_ORPHANAGE_URL,
+  GET_STAFF_COUNT_FOR_ORPHANAGE_URL,
+  GET_PARENT_COUNT_FOR_ORPHANAGE_URL,
 } from "../config";
 
 export const profileApiSlice = apiSlice.injectEndpoints({
@@ -69,7 +72,7 @@ export const profileApiSlice = apiSlice.injectEndpoints({
 
     viewChildProfiles: builder.query({
       query: (data) => ({
-        url: VIEW_CHILD_PROFILE_URL+`?childId=${data}`,
+        url: VIEW_CHILD_PROFILE_URL + `?childId=${data}`,
         method: "GET",
         // body: data,
       }),
@@ -77,7 +80,7 @@ export const profileApiSlice = apiSlice.injectEndpoints({
 
     viewStaffProfiles: builder.query({
       query: (data) => ({
-        url: VIEW_STAFF_PROFILE_URL+`?staffId=${data}`,
+        url: VIEW_STAFF_PROFILE_URL + `?staffId=${data}`,
         method: "GET",
         // body: data,
       }),
@@ -85,7 +88,7 @@ export const profileApiSlice = apiSlice.injectEndpoints({
 
     viewSocialWorkerProfiles: builder.query({
       query: (data) => ({
-        url: VIEW_SOCIAL_WORKER_PROFILE_URL+`?workerId=${data}`,
+        url: VIEW_SOCIAL_WORKER_PROFILE_URL + `?workerId=${data}`,
         method: "GET",
         // body: data,
       }),
@@ -93,7 +96,7 @@ export const profileApiSlice = apiSlice.injectEndpoints({
 
     viewParentProfiles: builder.query({
       query: (data) => ({
-        url: VIEW_PARENT_PROFILE_URL+`?parentId=${data}`,
+        url: VIEW_PARENT_PROFILE_URL + `?parentId=${data}`,
         method: "GET",
         // body: data,
       }),
@@ -110,7 +113,6 @@ export const profileApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
-    
     createStaffProfile: builder.mutation({
       query: (data) => ({
         url: CREATE_STAFF_PROFILE_URL,
@@ -135,7 +137,6 @@ export const profileApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
-
     /**
      * DELETE- Delete child profile
      */
@@ -155,7 +156,7 @@ export const profileApiSlice = apiSlice.injectEndpoints({
     }),
     deleteSocialWorkerProfile: builder.mutation({
       query: (data) => ({
-        url:  DELETE_SOCIAL_WORKER_PROFILE_URL,
+        url: DELETE_SOCIAL_WORKER_PROFILE_URL,
         method: "DELETE",
         body: data,
       }),
@@ -203,9 +204,6 @@ export const profileApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
-
-
-
     getChildProfileNameList: builder.query({
       query: (data) => ({
         url: GET_CHILD_PROFILE_NAME_LIST,
@@ -215,6 +213,24 @@ export const profileApiSlice = apiSlice.injectEndpoints({
     getSocialWorkerNameList: builder.query({
       query: (data) => ({
         url: GET_SOCIAL_WORKER_NAME_LIST,
+        method: "GET",
+      }),
+    }),
+    getStaffCountForOrphanage: builder.query({
+      query: (data) => ({
+        url: GET_STAFF_COUNT_FOR_ORPHANAGE_URL,
+        method: "GET",
+      }),
+    }),
+    getProfileCountForOrphanage: builder.query({
+      query: (data) => ({
+        url: GET_PROFILE_COUNT_FOR_ORPHANAGE_URL,
+        method: "GET",
+      }),
+    }),
+    getParentCountForOrphanage: builder.query({
+      query: (data) => ({
+        url: GET_PARENT_COUNT_FOR_ORPHANAGE_URL,
         method: "GET",
       }),
     }),
@@ -244,4 +260,7 @@ export const {
   useEditParentProfileMutation,
   useGetChildProfileNameListQuery,
   useGetSocialWorkerNameListQuery,
+  useGetProfileCountForOrphanageQuery,
+  useGetStaffCountForOrphanageQuery,
+  useGetParentCountForOrphanageQuery
 } = profileApiSlice;
