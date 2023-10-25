@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ChildDocumentListCard from "./ChildDocumentListCard";
 import Select from "react-select";
+import { useGetChildProfileNameListQuery } from "../../slices/profileApiSlice";
 
 const ChildDocumentList = () => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const childProfileListReponse = useGetChildProfileNameListQuery();
 
-  const optionList = [
-    { value: "20012", label: "K.D.Lalith" },
-    { value: "19013", label: "R.S.Kumara" },
-    { value: "18014", label: "P.H.Jayasiri" },
-    { value: "20015", label: "Saman" },
-    { value: "20016", label: "Kavindu" },
-  ];
+  const optionList = childProfileListReponse.isSuccess ? childProfileListReponse.data.childProfileNameList.map((profile) => ({value: profile.Id, label: profile.FullName})) : []
+  console.log(optionList)
 
   function handleSelect(data) {
     setSelectedOption(data);
   }
+
   return (
     <div>
       <div className="dropdown-container">
@@ -33,10 +31,10 @@ const ChildDocumentList = () => {
         <div></div>
       )}
       {selectedOption ? (
-        <ChildDocumentListCard />
+        <ChildDocumentListCard childId={selectedOption.value} />
       ) : (
         <div className="document-header">
-          You didn't select a child. Please select one
+          You did not select a child. Please select one
         </div>
       )}
     </div>

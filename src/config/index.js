@@ -36,7 +36,8 @@ export const GET_SOCIAL_WORKER_NAME_LIST =
   "/api/profile/getSocialWorkerNameListByOrphanageId";
 
 export const GET_CHILD_LIST_URL = "/api/profile/getChildProfileList";
-export const GET_CHILD_LIST_FOR_PARENT_URL = "/api/profile/viewChildProfilesForParents";
+export const GET_CHILD_LIST_FOR_PARENT_URL =
+  "/api/profile/viewChildProfilesForParents";
 export const GET_STAFF_LIST_URL = "/api/profile/getStaffProfileList";
 export const GET_STAFF_COUNT_FOR_ORPHANAGE_URL =
   "/api/profile/getStaffCountForOrphanage";
@@ -82,6 +83,7 @@ export const APPROVE_URL = "/api/admin/approve";
 export const REJECT_URL = "/api/admin/reject";
 export const CHAT_URL = "/api/admin/chat";
 export const REPORT_URL = "/api/admin/report";
+export const GET_CHILD_DOC_URL = "/api/profile/getChildDocs";
 export const ADMIN_DASHBOARD_URL = "/api/admin//adminDashboard";
 export const GET_INQUIRY_LIST_URL = "/api/profile/getInquiryList";
 export const determineAppServerKey = () => {

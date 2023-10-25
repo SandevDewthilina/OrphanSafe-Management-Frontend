@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SocialWorkerDocumentListCard from "../../components/external-party/SocialWorkerDocumentListCard";
 import Select from "react-select";
+import { useGetSocialWorkerProfileListQuery } from "../../slices/profileApiSlice";
 
 const SocialWorkerDocumentList = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const optionList = [
-    { value: "20012", label: "K.D.Lalith" },
-    { value: "19013", label: "R.S.Kumara" },
-    { value: "18014", label: "P.H.Jayasiri" },
-    { value: "20015", label: "Saman" },
-    { value: "20016", label: "Kavindu" },
-  ];
+  const childProfileListReponse = useGetSocialWorkerProfileListQuery();
+
+  const optionList = childProfileListReponse.isSuccess
+    ? childProfileListReponse.data.socialWorkerProfiles.map((profile) => ({
+        value: profile.workerId,
+        label: profile.Name,
+      }))
+    : [];
+  console.log(optionList);
 
   function handleSelect(data) {
     setSelectedOption(data);
@@ -35,7 +38,7 @@ const SocialWorkerDocumentList = () => {
         <div></div>
       )}
       {selectedOption ? (
-        <SocialWorkerDocumentListCard />
+        <SocialWorkerDocumentListCard socialworkerId={selectedOption.value} />
       ) : (
         <div className="document-header">
           You didn't select a social worker. Please select one

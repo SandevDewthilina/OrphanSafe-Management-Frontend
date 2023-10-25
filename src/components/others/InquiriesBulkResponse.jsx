@@ -40,6 +40,7 @@ const InquiriesBulkResponse = () => {
                   <tr>
                     <th>Select</th>
                     <th>Inquiry ID</th>
+                    <th >Date</th>
                     <th>Inquiry Subject</th>
                     <th>Inquiry Details</th>
                     <th>Sender Name</th>
@@ -65,6 +66,7 @@ const InquiriesBulkResponse = () => {
                     </td> 
                   </tr>
                   ))}
+                 
                  
                  
                  

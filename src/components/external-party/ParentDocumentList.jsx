@@ -1,17 +1,20 @@
-import React, { useState } from "react";
 import ParentDocumentListCard from "../../components/external-party/parentDocumentListCard";
 import Select from "react-select";
+import { useGetParentProfileListQuery } from "../../slices/profileApiSlice";
+import { useState } from "react";
 
 const ParentDocumentList = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const optionList = [
-    { value: "20012", label: "K.D.Lalith" },
-    { value: "19013", label: "R.S.Kumara" },
-    { value: "18014", label: "P.H.Jayasiri" },
-    { value: "20015", label: "Saman" },
-    { value: "20016", label: "Kavindu" },
-  ];
+  const childProfileListReponse = useGetParentProfileListQuery();
+
+  const optionList = childProfileListReponse.isSuccess
+    ? childProfileListReponse.data.parentsProfiles.map((profile) => ({
+        value: profile.UserId,
+        label: profile.name,
+      }))
+    : [];
+  console.log(optionList);
 
   function handleSelect(data) {
     setSelectedOption(data);
@@ -29,13 +32,13 @@ const ParentDocumentList = () => {
 
       {selectedOption ? (
         <div className="document-header">
-          Social Worker ID : {selectedOption.value}
+          User ID : {selectedOption.value}
         </div>
       ) : (
         <div></div>
       )}
       {selectedOption ? (
-        <ParentDocumentListCard />
+        <ParentDocumentListCard parentId={selectedOption.value} />
       ) : (
         <div className="document-header">
           You didn't select a Parent. Please select one
