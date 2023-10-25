@@ -43,6 +43,7 @@ export const GET_SOCIAL_WORKER_LIST_URL =
   "/api/profile/getSocialWorkerProfileList";
 export const GET_PARENT_LIST_URL = "/api/profile/getParentProfileList";
 
+
 export const VIEW_CHILD_PROFILE_URL = "/api/profile/viewChildProfiles";
 export const VIEW_STAFF_PROFILE_URL = "/api/profile/viewStaffProfile";
 export const VIEW_PARENT_PROFILE_URL = "/api/profile/viewParentProfile";
@@ -76,6 +77,7 @@ export const APPROVE_URL = "/api/admin/approve";
 export const REJECT_URL = "/api/admin/reject";
 export const CHAT_URL = "/api/admin/chat";
 export const REPORT_URL = "/api/admin/report";
+export const GET_INQUIRY_LIST_URL = "/api/profile/getInquiryList";
 
 export const determineAppServerKey = () => {
   const vapidPublicKey =

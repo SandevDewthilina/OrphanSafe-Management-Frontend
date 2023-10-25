@@ -28,7 +28,8 @@ import {
   GET_STAFF_COUNT_FOR_ORPHANAGE_URL,
   GET_PARENT_COUNT_FOR_ORPHANAGE_URL,
   CREATE_FUND_URL,
-  CREATE_INQUIRY_URL
+  CREATE_INQUIRY_URL,
+  GET_INQUIRY_LIST_URL
 } from "../config";
 
 export const profileApiSlice = apiSlice.injectEndpoints({
@@ -63,6 +64,14 @@ export const profileApiSlice = apiSlice.injectEndpoints({
     getParentProfileList: builder.query({
       query: () => ({
         url: GET_PARENT_LIST_URL,
+        method: "GET",
+        // body: data,
+      }),
+    }),
+
+    getInquiryList: builder.query({
+      query: () => ({
+        url: GET_INQUIRY_LIST_URL,
         method: "GET",
         // body: data,
       }),
@@ -281,5 +290,6 @@ export const {
   useGetSocialWorkerNameListQuery,
   useGetProfileCountForOrphanageQuery,
   useGetStaffCountForOrphanageQuery,
-  useGetParentCountForOrphanageQuery
+  useGetParentCountForOrphanageQuery,
+  useGetInquiryListQuery,
 } = profileApiSlice;

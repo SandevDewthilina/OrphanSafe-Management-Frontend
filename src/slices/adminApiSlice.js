@@ -1,5 +1,5 @@
 import { apiSlice } from "./apiSlice";
-import { OVERALL_APPROVAL_URL, APPROVE_URL,REJECT_URL, CHAT_URL, REPORT_URL } from "../config";
+import { OVERALL_APPROVAL_URL, APPROVE_URL,REJECT_URL, CHAT_URL, REPORT_URL,GET_INQUIRY_LIST_URL } from "../config";
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -36,6 +36,18 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: 'GET'
       })
     }),
+
+    getInquiryList: builder.query({
+      query: () => ({
+        url: GET_INQUIRY_LIST_URL,
+        method: "GET",
+        // body: data,
+      }),
+    }),
+
+
+
+
     report: builder.mutation({
       query: (data) => ({
         url: REPORT_URL + `?report=${data}`,
@@ -51,5 +63,6 @@ export const {
   useRejectMutation,
   useChatMutation,
   useGetChatQuery,
+  useGetInquiryListQuery,
   useReportMutation
 } = userApiSlice;
