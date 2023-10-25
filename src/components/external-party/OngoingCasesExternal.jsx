@@ -9,11 +9,17 @@ import "datatables.net"; // Import DataTables JavaScript
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import { useGetCaseListByUserIdQuery } from "../../slices/caseApiSlice";
+import { useSelector } from "react-redux";
 
 const OngoingCaseViewExternal = () => {
   const tableRef = useRef(null);
-
-  const { data, isError, isLoading, isSuccess } = useGetCaseListByUserIdQuery();
+  const { userInfo } = useSelector((state) => state.auth);
+  if (userInfo.roleName === "socialWorker") {
+    const { data, isError, isLoading, isSuccess } =
+      useGetCaseListByUserIdQuery();
+  } else {
+    
+  }
 
   useEffect(() => {
     // Initialize DataTable
@@ -62,11 +68,7 @@ const OngoingCaseViewExternal = () => {
                           </Link>
                         </td>
                         <td>{data.AssignedBy}</td>
-                        <td>
-                          <LinkContainer to="/parent/viewProfile/overview">
-                            <a href="#">{data.ChildName}</a>
-                          </LinkContainer>
-                        </td>
+                        <td>{data.ChildName}</td>
                         <td>
                           {data.LastUpdate
                             ? data.LastUpdate.substring(0, 10)
