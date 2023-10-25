@@ -31,6 +31,7 @@ import {
   CREATE_FUND_URL,
   CREATE_INQUIRY_URL,
   GET_CHILD_LIST_FOR_PARENT_URL
+
 } from "../config";
 
 export const profileApiSlice = apiSlice.injectEndpoints({

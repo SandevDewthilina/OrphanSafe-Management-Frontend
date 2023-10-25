@@ -6,6 +6,7 @@ import {
   CHAT_URL,
   REPORT_URL,
   ADMIN_DASHBOARD_URL,
+
   GET_INQUIRY_LIST_URL
 } from "../config";
 export const userApiSlice = apiSlice.injectEndpoints({
@@ -48,6 +49,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: ADMIN_DASHBOARD_URL,
         method: "GET",
       }),
+
     }),
 
     getInquiryList: builder.query({
@@ -56,6 +58,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: "GET",
         // body: data,
       }),
+
     }),
 
 
@@ -76,5 +79,6 @@ export const {
   useRejectMutation,
   useChatMutation,
   useGetChatQuery,
-  useReportMutation
+  useReportMutation,
+  useAdminDashboardQuery,
 } = userApiSlice;

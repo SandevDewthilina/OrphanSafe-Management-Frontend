@@ -28,6 +28,7 @@ const ParentViewChildList = () => {
     // Initialize DataTable
     $(tableRef.current).DataTable();
   }, [data]);
+
   return (
     <Row>
       <Col sm={12}>
