@@ -6,39 +6,48 @@ import React, { useEffect, useRef } from "react";
 import $ from "jquery"; // Import jQuery
 import "datatables.net-dt/css/jquery.dataTables.css"; // Import DataTables CSS
 import "datatables.net"; // Import DataTables JavaScript
-import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
-import { useGetCaseListByUserIdQuery } from "../../slices/caseApiSlice";
+
+import {
+  useGetCaseListByUserIdQuery,
+  useGetCaseListByParentIdQuery,
+} from "../../slices/caseApiSlice";
+
 import { useSelector } from "react-redux";
 
 const OngoingCaseViewExternal = () => {
   const tableRef = useRef(null);
   const { userInfo } = useSelector((state) => state.auth);
-  if (userInfo.roleName === "socialWorker") {
-    const { data, isError, isLoading, isSuccess } =
-      useGetCaseListByUserIdQuery();
-  } else {
-    
+  var data = null;
+  const socialRes = useGetCaseListByUserIdQuery();
+  const parentRes = useGetCaseListByParentIdQuery();
+
+  if (userInfo.roleName === "socialWorker" && socialRes.isSuccess) {
+    data = socialRes.data;
+  }
+  if (userInfo.roleName === "parent" && parentRes.isSuccess) {
+    data = parentRes.data;
   }
 
   useEffect(() => {
     // Initialize DataTable
     $(tableRef.current).DataTable();
   }, [data]);
-  console.log(data);
   return (
     <Row>
       <Col sm={12}>
         <MyCard>
           <MyCardHeader>View Cases</MyCardHeader>
           <MyCardBody>
-            {isError && (
+            {socialRes.isError && (
               <Col className="text-center">
                 <strong>Unexpected Error occured Sorry! :(</strong>
               </Col>
             )}
-            {isLoading && <Col className="text-center">Loading Data!</Col>}
-            {isSuccess && (
+            {socialRes.isLoading && (
+              <Col className="text-center">Loading Data!</Col>
+            )}
+            {socialRes.isSuccess && (
               <div>
                 <Table
                   responsive
