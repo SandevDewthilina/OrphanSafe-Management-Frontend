@@ -44,8 +44,7 @@ const AssignSocialWorkers = () => {
 
       e.preventDefault();
       if (selectedChildOption && selectedSocialWorkerOption) {
-        console.log(caseName, caseDescription);
-        if (caseName.trim().length != 0 || caseDescription.trim().length != 0) {
+        if (caseName.trim().length != 0 && caseDescription.trim().length != 0) {
           try {
             const caseData = {
               caseName: caseName,
@@ -53,11 +52,14 @@ const AssignSocialWorkers = () => {
               childProfileId: selectedChildOption.value,
               caseOwnerId: selectedSocialWorkerOption.value,
             };
+            console.log(caseData);
             const res = await createCase(caseData).unwrap();
             toast.success("creation completed");
             form.reset();
+            setCaseName("");
+            setCaseDescription("");
           } catch (error) {
-            toast.error(error.message);
+            toast.error(error.data.message);
           }
         } else {
           toast.error("There should be a name and a description, Please fill");

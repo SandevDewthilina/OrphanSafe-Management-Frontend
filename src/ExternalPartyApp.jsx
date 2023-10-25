@@ -36,7 +36,6 @@ const ExternalPartyApp = () => {
     "/dashboard/External": "Dashboard",
     "/external/CreateCaseLog": "Create Case Log",
     "/external/CaseRequest": "New Case Request",
-    "/external/EditDeleteCaseLog": "View Edit And Delete Case Logs",
     "/parent/RequestChildProfile": "Request Child Profiles",
     "/parent/RequestCaseInfo": "Request Case Information",
     "/parent/ParentsViewCases": "View Cases",

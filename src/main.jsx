@@ -11,8 +11,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
 import store from "./store";
 import { Provider } from "react-redux";
-
-import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen.jsx";
 import App from "./App.jsx";
 import DefaultLayout from "./DefaultLayout.jsx";
@@ -173,16 +171,31 @@ const router = createBrowserRouter(
         />
 
         <Route path="/editProfile" element={<EditProfile />} />
-        <Route path="/edit/editChildProfile" element={<EditChildProfileScreen />} />
-        <Route path="/edit/editStaffProfile" element={<EditStaffProfileScreen />} />
-        <Route path="/edit/editParentProfile" element={<EditParentProfileScreen />} />
-        <Route path="/edit/editSocialWorkerProfile" element={<EditSocialWorkerScreen />} />
+        <Route
+          path="/edit/editChildProfile"
+          element={<EditChildProfileScreen />}
+        />
+        <Route
+          path="/edit/editStaffProfile"
+          element={<EditStaffProfileScreen />}
+        />
+        <Route
+          path="/edit/editParentProfile"
+          element={<EditParentProfileScreen />}
+        />
+        <Route
+          path="/edit/editSocialWorkerProfile"
+          element={<EditSocialWorkerScreen />}
+        />
 
         <Route
           path="/inquiry/CreateInquiry"
           element={<CreateInquiryScreen />}
         />
-        <Route path="/delete/deleteChildProfile" element={<DeleteChildScreen />} />
+        <Route
+          path="/delete/deleteChildProfile"
+          element={<DeleteChildScreen />}
+        />
 
         <Route path="/chat/StaffChat" element={<StaffChatScreen />} />
       </Route>
@@ -229,6 +242,10 @@ const router = createBrowserRouter(
         <Route
           path="/dashboard/External"
           element={<ExternalDashboardScreen />}
+        />
+        <Route
+          path="/parent/viewChildProfileList/overview"
+          element={<ChildOverviewScreen />}
         />
         <Route
           path="/cases/viewCases/overview"

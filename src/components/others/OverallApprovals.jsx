@@ -2,7 +2,7 @@ import "../../index.css";
 import "../../assets/css/staff/dataTable.css";
 import { Button, Col, Form, Row, Table } from "react-bootstrap";
 import { MyCard, MyCardBody, MyCardHeader } from "../MyCard";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import $ from "jquery"; // Import jQuery
 import "datatables.net-dt/css/jquery.dataTables.css"; // Import DataTables CSS
 import "datatables.net"; // Import DataTables JavaScript
@@ -12,11 +12,13 @@ import {
   useApproveMutation,
   useRejectMutation
 } from "../../slices/adminApiSlice";
+import {toast} from 'react-toastify'
 
 const OverallApproval = () => {
   const tableRef = useRef(null);
 
   const { data, isError, isLoading, isSuccess, refetch } = useGetApprovalListQuery();
+  console.log(data)
   const [approveReq, approveStat] = useApproveMutation();
   const [rejectReq, rejectStat] = useRejectMutation();
 
@@ -85,8 +87,8 @@ const OverallApproval = () => {
                     </thead>
                     <tbody>
                       {data.parentCaseRequests.map((row) => (
-                        <tr>
-                          <td>{row.RequestId}</td>
+                        <tr key={row.RequestId}>
+                          <td>{row.approvalid}</td>
                           <td>
                             <LinkContainer to="/admin/viewStaffProfile/overview">
                               <a href="#">{row.ParentName}</a>
@@ -104,10 +106,10 @@ const OverallApproval = () => {
                             </LinkContainer>
                           </td>
                           <td>
-                            <button className="my-btn mr-2" onClick={(e) => approve(row.ApprovalId)}>Approve</button>
+                            <button className="my-btn mr-2" onClick={(e) => approve(row.approvalid)}>Approve</button>
                           </td>
                           <td>
-                            <button className="my-btn-danger" onClick={(e) => reject(row.ApprovalId)}>Reject</button>
+                            <button className="my-btn-danger" onClick={(e) => reject(row.approvalid)}>Reject</button>
                           </td>
                         </tr>
                       ))}
@@ -122,7 +124,7 @@ const OverallApproval = () => {
       <Row style={{ marginBottom: "20px" }}>
         <Col sm={12}>
           <MyCard>
-            <MyCardHeader>Social Worker Request child profile</MyCardHeader>
+            <MyCardHeader>Parent Request child profile</MyCardHeader>
             <MyCardBody>
               {isError && (
                 <Col className="text-center">
@@ -152,17 +154,17 @@ const OverallApproval = () => {
                     </thead>
                     <tbody>
                       {data.socialWorkerProfileRequests.map((row) => (
-                        <tr>
-                          <td>{row.RequestId}</td>
+                       <tr key={row.approvalid}>
+                          <td>{row.approvalid}</td>
                           <td>
                             <LinkContainer to="/admin/viewStaffProfile/overview">
-                              <a href="#">{row.SocialWorkerName}</a>
+                              <a href="#">{row.parentname}</a>
                             </LinkContainer>
                           </td>
-                          <td>data.ChildId</td>
+                          <td>{row.childid}</td>
                           <td>
                             <LinkContainer to="/admin/viewStaffProfile/overview">
-                              <a href="#">{row.ChildName}</a>
+                              <a href="#">{row.childname}</a>
                             </LinkContainer>
                           </td>
                           <td>
@@ -171,10 +173,10 @@ const OverallApproval = () => {
                             </LinkContainer>
                           </td>
                           <td>
-                            <button className="my-btn mr-2" onClick={(e) => approve(row.ApprovalId)}>Approve</button>
+                            <button className="my-btn mr-2" onClick={(e) => approve(row.approvalid)}>Approve</button>
                           </td>
                           <td>
-                            <button className="my-btn-danger" onClick={(e) => reject(row.ApprovalId)}>Reject</button>
+                            <button className="my-btn-danger" onClick={(e) => reject(row.approvalid)}>Reject</button>
                           </td>
                         </tr>
                       ))}
@@ -219,8 +221,8 @@ const OverallApproval = () => {
                     </thead>
                     <tbody>
                       {data.fundingApprovals.map((row) => (
-                        <tr>
-                          <td>1092</td>
+                        <tr key={row.approvalid}>
+                          <td>{row.approvalid}</td>
                           <td>{row.Name}</td>
                           <td>{row.TransactionDateTime}</td>
                           <td>{row.TransactionAmount}</td>
@@ -230,10 +232,10 @@ const OverallApproval = () => {
                             </LinkContainer>
                           </td>
                           <td>
-                            <button className="my-btn mr-2" onClick={(e) => approve(row.ApprovalId)}>Approve</button>
+                            <button className="my-btn mr-2" onClick={(e) => approve(row.approvalid)}>Approve</button>
                           </td>
                           <td>
-                            <button className="my-btn-danger" onClick={(e) => reject(row.ApprovalId)}>Reject</button>
+                            <button className="my-btn-danger" onClick={(e) => reject(row.approvalid)}>Reject</button>
                           </td>
                         </tr>
                       ))}

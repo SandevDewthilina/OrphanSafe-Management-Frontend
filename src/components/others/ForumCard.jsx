@@ -1,22 +1,38 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../../assets/css/staff/forum.css";
-import { Button, Col, Form, Row } from "react-bootstrap";
-import { useGetChatQuery } from "../../slices/adminApiSlice";
+import { Col, Form, Row } from "react-bootstrap";
+import { useGetChatQuery, useChatMutation } from "../../slices/adminApiSlice";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const ForumCard = () => {
-  const { data, isLoading, isError, isSuccess } = useGetChatQuery();
+  const chatData = useGetChatQuery();
+  const [pushChat, { isError }] = useChatMutation();
   const { userInfo } = useSelector((state) => state.auth);
+  const [message, setMessage] = useState("");
+
+  const sendChat = async () => {
+    await pushChat({
+      from: userInfo.userId,
+      to: userInfo.userId,
+      content: message,
+    });
+    if (isError) {
+      toast.error("couldn't send chat");
+    }
+    setMessage("");
+    chatData.refetch();
+  };
 
   useEffect(() => {
-    if (isSuccess) {
+    if (chatData.isSuccess) {
       // Get a reference to your div element
       const myDiv = document.getElementById("scrollview");
 
       // Scroll to the bottom
       myDiv.scrollTop = myDiv.scrollHeight;
     }
-  }, [data]);
+  }, [chatData.data]);
 
   return (
     <div className="background">
@@ -29,13 +45,13 @@ const ForumCard = () => {
           </Col>
         </Row>
         <div className="divider"></div>
-        {isError && (
+        {chatData.isError && (
           <Col className="text-center">
             <strong>Unexpected Error occured Sorry! :(</strong>
           </Col>
         )}
-        {isLoading && <Col className="text-center">Loading Data!</Col>}
-        {isSuccess && (
+        {chatData.isLoading && <Col className="text-center">Loading Data!</Col>}
+        {chatData.isSuccess && (
           <div
             id="scrollview"
             style={{
@@ -44,19 +60,21 @@ const ForumCard = () => {
               overflowX: "hidden",
             }}
           >
-            {data.map((chat) => (
+            {chatData.data.map((chat) => (
               <Row key={chat.Id}>
                 <Col className="">
-                <div className="message">
-                  <div
-                    className={chat.From === userInfo.userId ? "send" : "reply mr-4"}
-                  >
-                    <div className="msg-text">{chat.Content}</div>
-                  </div>
+                  <div className="message">
+                    <div
+                      className={
+                        chat.From === userInfo.userId ? "send" : "reply mr-4"
+                      }
+                    >
+                      <div className="msg-text">{chat.Content}</div>
+                    </div>
                     <div className="date">
                       {chat.Timestamp.toString().replace("T", " ")}
                     </div>
-                </div>
+                  </div>
                 </Col>
               </Row>
             ))}
@@ -68,10 +86,17 @@ const ForumCard = () => {
           <Form.Label>Start a Topic</Form.Label>
           <Row>
             <Col lg={10}>
-              <Form.Control type="text" placeholder="Discribe your topic" />
+              <Form.Control
+                type="text"
+                placeholder="Discribe your topic"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
             </Col>
             <Col lg={2}>
-              <button className="my-btn mr-2">send</button>
+              <button className="my-btn mr-2" onClick={sendChat}>
+                send
+              </button>
             </Col>
           </Row>
         </div>

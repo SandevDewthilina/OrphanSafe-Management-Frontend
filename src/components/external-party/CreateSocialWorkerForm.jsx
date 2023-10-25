@@ -11,7 +11,6 @@ const CreateSocialWorkerForm = () => {
   const [phoneNumber,setPhoneNumber]= useState("");
   const [email,setEmail]= useState("");
   const [password,setPassword]= useState("");
-  const [OrphanageName,setOrphanageName]= useState("");
   const [address,setAddress]= useState("");
   const [nic,setNic]= useState("");
   const [gender,setGender]= useState("");
@@ -43,7 +42,7 @@ const CreateSocialWorkerForm = () => {
         phoneNumber: phoneNumber,
         email: email,
         password: password,
-        OrphanageName: OrphanageName,
+
         address: address,
         nic: nic,
         gender: gender,
@@ -56,7 +55,7 @@ const CreateSocialWorkerForm = () => {
       }));
       const res = await registerSocialWorker(formData).unwrap();
 
-      toast.success(" Staff profile Registration completed");
+      toast.success(" Social worker profile Registration completed");
     } catch (error) {
       toast.error(error.data.message);
     }
@@ -244,14 +243,14 @@ const CreateSocialWorkerForm = () => {
         onChange={(e) => setPassword(e.target.value)}/>
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicStaffName">
+      {/* <Form.Group className="mb-3" controlId="formBasicStaffName">
         <Form.Label> Orphanage Name</Form.Label>
         <Form.Text className="text-muted">
         *name of the orphanage by which the social worker got registered
         </Form.Text>
         <Form.Control type="text" placeholder="e.g. Little dreams Orphanage" 
         onChange={(e) => setOrphanageName(e.target.value)}/>
-      </Form.Group>
+      </Form.Group> */}
 
       
       <Button variant="primary" type="submit">

@@ -11,7 +11,7 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userInfo && userInfo.roleName !== "orphanageManager") {
+    if (userInfo && userInfo.roleName !== "orphanageManager" && userInfo.roleName !== "orphanageStaff") {
       navigate("/auth/denied");
     }
 
@@ -73,20 +73,18 @@ const App = () => {
     "/approval/OverallApproval": "Overall Approvals",
     "/chat/StaffChat": "Staff Chat",
     "/registration/OrphanageRegistration": "Orphanage Registration",
-    "/edit/editChildProfile":"Edit Child Profiles",
+    "/edit/editChildProfile": "Edit Child Profiles",
     "/edit/editStaffProfile": "Edit Staff profiles",
     "/edit/editParentProfile": "Edit Parent Profiles",
-    "/edit/editSocialWorkerProfile":"Edit Social worker Profiles",
-    "/registration/OrphanageRegistration": "Orphanage Registration",
-    "/delete/deleteChildProfile":"Delete Child Profile Form"
-
+    "/edit/editSocialWorkerProfile": "Edit Social worker Profiles",
+    "/delete/deleteChildProfile": "Delete Child Profile Form",
   };
   // Check if the path exists in the mapping, and if so, set the pageTitle accordingly
   if (path in pathToTitleMap) {
     pageTitle = pathToTitleMap[path];
   }
 
-  return userInfo && userInfo && userInfo.roleName === "orphanageManager" ? (
+  return userInfo && userInfo && (userInfo.roleName === "orphanageManager" || userInfo.roleName === "orphanageStaff") ? (
     <>
       <Header />
       <Sidebar />

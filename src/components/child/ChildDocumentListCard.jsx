@@ -1,9 +1,21 @@
-import React from "react";
-import { Form, Table, Row, Col } from "react-bootstrap";
+import { Form, Table, Row, Col, Button } from "react-bootstrap";
 import { MyCard, MyCardBody, MyCardHeader } from "../../components/MyCard";
-import ViewButton from "../Button";
+import { useGetChildDocUrlMutation } from "../../slices/profileApiSlice";
+import { toast } from "react-toastify";
 
-const ChildDocumentListCard = () => {
+const ChildDocumentListCard = (props) => {
+  const [loadUrl, { isError }] = useGetChildDocUrlMutation();
+  const ClickView = async (type) => {
+    const response = await loadUrl(`childFiles/${props.childId}/${type}/`);
+    console.log(response);
+    if (isError) toast.error("sorry, request failed!");
+    try{
+      window.open(response.data.url[0].url, "_blank");
+    } catch (e) {
+      toast.error('Sorry, file cannot be accessed')
+    }
+  };
+
   return (
     <div>
       <Row>
@@ -17,33 +29,47 @@ const ChildDocumentListCard = () => {
                     <tr>
                       <td className="td">Birth Certificate</td>
                       <td className="td">
-                        <a href="#" className="blue-button">
-                          <ViewButton />
-                        </a>
+                        <Button
+                          variant="outline-primary"
+                          onClick={() => ClickView("MedicalDoc")}
+                        >
+                          View
+                        </Button>
                       </td>
                     </tr>
                     <tr>
                       <td className="td">Medical Report</td>
                       <td className="td">
-                        <a href="#" className="blue-button">
-                          <ViewButton />
-                        </a>
+                        <Button
+                          variant="outline-primary"
+                          onClick={() =>
+                            ClickView("ChildProtectionCertificate")
+                          }
+                        >
+                          View
+                        </Button>
                       </td>
                     </tr>
                     <tr>
                       <td className="td">Mother's Birth Certificate</td>
                       <td className="td">
-                        <a href="#" className="blue-button">
-                          <ViewButton />
-                        </a>
+                        <Button
+                          variant="outline-primary"
+                          onClick={() => ClickView("BirthCertificate")}
+                        >
+                          View
+                        </Button>
                       </td>
                     </tr>
                     <tr>
                       <td className="td">Father's Birth Certificate</td>
                       <td className="td">
-                        <a href="#" className="blue-button">
-                          <ViewButton />
-                        </a>
+                        <Button
+                          variant="outline-primary"
+                          onClick={() => ClickView("FathersBirthCertificate")}
+                        >
+                          View
+                        </Button>
                       </td>
                     </tr>
                     <tr>
@@ -51,9 +77,14 @@ const ChildDocumentListCard = () => {
                         Child Protection Authority Certififcate
                       </td>
                       <td className="td">
-                        <a href="#" className="blue-button">
-                          <ViewButton />
-                        </a>
+                        <Button
+                          variant="outline-primary"
+                          onClick={() =>
+                            ClickView("ChildProtectionCertificate")
+                          }
+                        >
+                          View
+                        </Button>
                       </td>
                     </tr>
                   </tbody>

@@ -96,7 +96,7 @@ const OrphanageRegistration = () => {
                   *date of registration
                 </Form.Text>
                 <Form.Control
-                  type="text"
+                  type="date"
                   placeholder="e.g. 1980/04/14"
                   onChange={(e) => setRegisteredDate(e.target.value)}
                 />

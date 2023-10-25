@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { LinkContainer } from "react-router-bootstrap";
+import { useSelector } from "react-redux";
 
 const ExternalSidebar = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
-
+  const { userInfo } = useSelector((state) => state.auth);
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
     const main_section = document.getElementById("main-section");
@@ -65,82 +66,88 @@ const ExternalSidebar = () => {
               </LinkContainer>
             </div>
           </div>
+          {userInfo.roleName == "socialWorker" ? (
+            <div className="sidebar-menu-item">
+              <div>
+                <div className="sidebar-menu-item-heading">
+                  <ion-icon name="caret-down"></ion-icon>
+                  <div>Activities</div>
+                </div>
 
-          <div className="sidebar-menu-item">
-            <div className="sidebar-menu-item-heading">
-              <ion-icon name="caret-down"></ion-icon>
-              <div>Social Workers</div>
+                <div className="sidebar-submenu">
+                  <LinkContainer to="/external/OngoingCases">
+                    <a className="sidebar-submenu-item" onClick={closeSidebar}>
+                      View Cases
+                    </a>
+                  </LinkContainer>
+                </div>
+                <div className="sidebar-submenu">
+                  <LinkContainer to="/external/CreateCaseLog">
+                    <a className="sidebar-submenu-item" onClick={closeSidebar}>
+                      Create case log
+                    </a>
+                  </LinkContainer>
+                </div>
+                <div className="sidebar-submenu">
+                  <LinkContainer to="/cases/AcceptOrRejectCases">
+                    <a className="sidebar-submenu-item" onClick={closeSidebar}>
+                      Case invitations
+                    </a>
+                  </LinkContainer>
+                </div>
+              </div>
+              <div className="sidebar-menu-item">
+                <div className="sidebar-menu-item-heading">
+                  <ion-icon name="caret-down"></ion-icon>
+                  <div>Communication</div>
+                </div>
+                <div className="sidebar-submenu">
+                  <LinkContainer to="/external/StaffChat">
+                    <a className="sidebar-submenu-item" onClick={closeSidebar}>
+                      Staff chat
+                    </a>
+                  </LinkContainer>
+                </div>
+              </div>
             </div>
-
-            <div className="sidebar-submenu">
-              <LinkContainer to="/external/OngoingCases">
-                <a className="sidebar-submenu-item" onClick={closeSidebar}>
-                  View Cases
-                </a>
-              </LinkContainer>
+          ) : (
+            <div>
+              <div className="sidebar-menu-item">
+                <div className="sidebar-menu-item-heading">
+                  <ion-icon name="caret-down"></ion-icon>
+                  <div>Activities</div>
+                </div>
+                <div className="sidebar-submenu">
+                  <LinkContainer to="/parent/RequestChildProfile">
+                    <a className="sidebar-submenu-item" onClick={closeSidebar}>
+                      Request child profile
+                    </a>
+                  </LinkContainer>
+                </div>
+                <div className="sidebar-submenu">
+                  <LinkContainer to="/parent/viewChildProfileList">
+                    <a className="sidebar-submenu-item" onClick={closeSidebar}>
+                      View child profile
+                    </a>
+                  </LinkContainer>
+                </div>
+                <div className="sidebar-submenu">
+                  <LinkContainer to="/parent/RequestCaseInfo">
+                    <a className="sidebar-submenu-item" onClick={closeSidebar}>
+                      Request case information
+                    </a>
+                  </LinkContainer>
+                </div>
+                <div className="sidebar-submenu">
+                  <LinkContainer to="/external/OngoingCases">
+                    <a className="sidebar-submenu-item" onClick={closeSidebar}>
+                      View cases
+                    </a>
+                  </LinkContainer>
+                </div>
+              </div>
             </div>
-            <div className="sidebar-submenu">
-              <LinkContainer to="/external/CreateCaseLog">
-                <a className="sidebar-submenu-item" onClick={closeSidebar}>
-                  Create case log
-                </a>
-              </LinkContainer>
-            </div>
-            <div className="sidebar-submenu">
-              <LinkContainer to="/cases/AcceptOrRejectCases">
-                <a className="sidebar-submenu-item" onClick={closeSidebar}>
-                  Case invitations
-                </a>
-              </LinkContainer>
-            </div>
-          </div>
-          <div className="sidebar-menu-item">
-            <div className="sidebar-menu-item-heading">
-              <ion-icon name="caret-down"></ion-icon>
-              <div>Communication</div>
-            </div>
-            <div className="sidebar-submenu">
-              <LinkContainer to="/external/StaffChat">
-                <a className="sidebar-submenu-item" onClick={closeSidebar}>
-                  Staff chat
-                </a>
-              </LinkContainer>
-            </div>
-          </div>
-          <div className="sidebar-menu-item">
-            <div className="sidebar-menu-item-heading">
-              <ion-icon name="caret-down"></ion-icon>
-              <div>Parents</div>
-            </div>
-            <div className="sidebar-submenu">
-              <LinkContainer to="/parent/RequestChildProfile">
-                <a className="sidebar-submenu-item" onClick={closeSidebar}>
-                  Request child profile
-                </a>
-              </LinkContainer>
-            </div>
-            <div className="sidebar-submenu">
-              <LinkContainer to="/parent/viewChildProfileList">
-                <a className="sidebar-submenu-item" onClick={closeSidebar}>
-                  View child profile
-                </a>
-              </LinkContainer>
-            </div>
-            <div className="sidebar-submenu">
-              <LinkContainer to="/parent/RequestCaseInfo">
-                <a className="sidebar-submenu-item" onClick={closeSidebar}>
-                  Request case information
-                </a>
-              </LinkContainer>
-            </div>
-            <div className="sidebar-submenu">
-              <LinkContainer to="/parent/ParentsViewCases">
-                <a className="sidebar-submenu-item" onClick={closeSidebar}>
-                  View cases
-                </a>
-              </LinkContainer>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </section>

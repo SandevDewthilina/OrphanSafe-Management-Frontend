@@ -13,10 +13,13 @@ const OngoinCaseView = () => {
   const tableRef = useRef(null);
   const { data, isError, isSuccess, isLoading } = useGetCaseListQuery();
 
-  useEffect(() => {
-    // Initialize DataTable
-    $(tableRef.current).DataTable();
-  }, [data]);
+  useEffect(
+    () => {
+      // Initialize DataTable
+      $(tableRef.current).DataTable();
+    },
+    [data]
+  );
 
   return (
     <Row>

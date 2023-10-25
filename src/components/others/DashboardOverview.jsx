@@ -1,10 +1,32 @@
-import React from "react";
-import { Button, Col, Form, Row, Table, Card } from "react-bootstrap";
-import { MyCard, MyCardBody, MyCardHeader } from "../MyCard";
+import { Col, Row, Table, Card } from "react-bootstrap";
+import { MyCard, MyCardHeader } from "../MyCard";
 import "../../index.css";
 import "../../assets/css/dashbord/dashboard.css";
+import {
+  useGetPendingCaseQuery,
+  useGetOngoingCaseQuery,
+  useGetCasesForOrphanageQuery,
+  useGetAdoptionForOrphanageQuery,
+  useGetFundingForOrphanageQuery,
+} from "../../slices/caseApiSlice";
+import {
+  useGetStaffCountForOrphanageQuery,
+  useGetProfileCountForOrphanageQuery,
+  useGetParentCountForOrphanageQuery,
+} from "../../slices/profileApiSlice";
 
 const DashboardOverview = () => {
+  const fundRes = useGetFundingForOrphanageQuery();
+  const adoptionRes = useGetAdoptionForOrphanageQuery();
+  const pendingRes = useGetPendingCaseQuery();
+  const ongoingRes = useGetOngoingCaseQuery();
+  const profileCount = useGetProfileCountForOrphanageQuery();
+  const staffCount = useGetStaffCountForOrphanageQuery();
+  const parentCount = useGetParentCountForOrphanageQuery();
+  const caseCount = useGetCasesForOrphanageQuery();
+  if (profileCount.isSuccess) {
+    console.log(profileCount.data);
+  }
   return (
     <div className="responsive">
       <div className="cards">
@@ -26,7 +48,13 @@ const DashboardOverview = () => {
                   </Col>
                 </Row>
 
-                <div className="CardNumber">56</div>
+                <div className="CardNumber">
+                  {profileCount.isLoading
+                    ? "Loading"
+                    : profileCount.isSuccess
+                    ? profileCount.data.count
+                    : "Error"}
+                </div>
                 <div className="CardItalic">Registered child profiles</div>
               </Card>
             </Col>
@@ -42,7 +70,13 @@ const DashboardOverview = () => {
                   </Col>
                 </Row>
 
-                <div className="CardNumber">12</div>
+                <div className="CardNumber">
+                  {staffCount.isLoading
+                    ? "Loading"
+                    : staffCount.isSuccess
+                    ? staffCount.data.count
+                    : "Error"}
+                </div>
                 <div className="CardItalic">Registered staff profiles</div>
               </Card>
             </Col>
@@ -54,12 +88,18 @@ const DashboardOverview = () => {
                       className="fa fa-heart"
                       style={{ fontSize: "30px", marginRight: "10px" }}
                     ></i>
-                    Ongoing Adoptions
+                    Parent Involves
                   </Col>
                 </Row>
 
-                <div className="CardNumber">56</div>
-                <div className="CardItalic">Registered child profiles</div>
+                <div className="CardNumber">
+                  {parentCount.isLoading
+                    ? "Loading"
+                    : parentCount.isSuccess
+                    ? parentCount.data.count
+                    : "Error"}
+                </div>
+                <div className="CardItalic">Adoption and Foster care</div>
               </Card>
             </Col>
             <Col md={3} sm={6} xs={12} style={{ marginBottom: "10px" }}>
@@ -74,7 +114,13 @@ const DashboardOverview = () => {
                   </Col>
                 </Row>
 
-                <div className="CardNumber">22</div>
+                <div className="CardNumber">
+                  {caseCount.isLoading
+                    ? "Loading"
+                    : caseCount.isSuccess
+                    ? caseCount.data.count
+                    : "Error"}
+                </div>
                 <div className="CardItalic">Registered child profiles</div>
               </Card>
             </Col>
@@ -91,44 +137,22 @@ const DashboardOverview = () => {
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Approval Description</th>
+                    <th>Case Name</th>
                     <th>Publish Date</th>
-                    <th>State</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                    <td>
-                      <i>Pending</i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                    <td>
-                      <i>Pending</i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                    <td>
-                      <i>Pending</i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                    <td>
-                      <i>Pending</i>
-                    </td>
-                  </tr>
+                  {pendingRes.isSuccess && pendingRes.data.cases ? (
+                    pendingRes.data.cases.map((data) => (
+                      <tr>
+                        <td>{data.Id}</td>
+                        <td>{data.CaseName}</td>
+                        <td>{data.CreatedAt}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <div>Loading</div>
+                  )}
                 </tbody>
               </Table>
             </MyCard>
@@ -141,31 +165,22 @@ const DashboardOverview = () => {
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Case Description</th>
+                    <th>Case Name</th>
                     <th>State Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
+                  {ongoingRes.isSuccess && ongoingRes.data.cases ? (
+                    ongoingRes.data.cases.map((data) => (
+                      <tr>
+                        <td>{data.Id}</td>
+                        <td>{data.CaseName}</td>
+                        <td>{data.CreatedAt.substring(0, 10)}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <div>Loading</div>
+                  )}
                 </tbody>
               </Table>
             </MyCard>
@@ -179,32 +194,25 @@ const DashboardOverview = () => {
               <Table responsive bordered style={{ width: "100%" }}>
                 <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>Case Description</th>
-                    <th>State Date</th>
+                    <th>Fund ID</th>
+                    <th>Donor</th>
+                    <th>Amount</th>
+                    <th>Fund Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
+                  {fundRes.isSuccess && fundRes.data.fund ? (
+                    fundRes.data.fund.map((data) => (
+                      <tr>
+                        <td>{data.Id}</td>
+                        <td>{data.Name}</td>
+                        <td>{data.Amount}</td>
+                        <td>{data.Date.substring(0, 10)}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <div>Loading</div>
+                  )}
                 </tbody>
               </Table>
             </MyCard>
@@ -216,32 +224,23 @@ const DashboardOverview = () => {
               <Table responsive bordered style={{ width: "100%" }}>
                 <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>Case Description</th>
-                    <th>State Date</th>
+                    <th>Mother name</th>
+                    <th>Father name</th>
+                    <th>description</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
+                  {adoptionRes.isSuccess && adoptionRes.data.cases ? (
+                    adoptionRes.data.cases.map((data) => (
+                      <tr>
+                        <td>{data.NameOfMother}</td>
+                        <td>{data.NameOfFather}</td>
+                        <td>{data.Description}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <div>Loading</div>
+                  )}
                 </tbody>
               </Table>
             </MyCard>

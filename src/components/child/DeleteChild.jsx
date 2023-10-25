@@ -1,34 +1,48 @@
 import { toast } from "react-toastify";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { MyCard, MyCardBody, MyCardHeader } from "../MyCard";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useDeleteChildProfileMutation } from "../../slices/profileApiSlice";
+import { Link } from "react-router-dom";
 
 const DeleteChild = () => {
+  const navigate = useNavigate()
+
   const [commitMessage, setCommitMessage] = useState("");
-  const [committedByUserName,setCommittedByUserName]= useState("");
+  //const [committedByUserName,setCommittedByUserName]= useState("");
   const queryParams = new URLSearchParams(location.search);
   const paramValue = queryParams.get("childId");
 
-  
+  const { userInfo } = useSelector((state) => state.auth);
 
   const [DeleteChild, { isLoading, isError, isSuccess }] =
   useDeleteChildProfileMutation();
 
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/auth/login");
+    }
+  }, [navigate, userInfo]);
+
+  const handleCancel = () => {
+    // Redirect to "/profile/viewProfile"
+    history.push('/profile/viewProfile');
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const formData = new FormData();
-      formData.append("otherInfo", JSON.stringify({
+      const res = await DeleteChild({
         commitMessage: commitMessage,
-        committedByUserName: committedByUserName,
+        committedByUserName: userInfo.email,
         childId: paramValue,
         
         
-      }));
-      const res = await DeleteChild(formData).unwrap();
+      }).unwrap();
 
-      toast.success(" Staff profile Registration completed");
+      toast.success(" Delete Child Request completed");
     } catch (error) {
       toast.error(error.data.message);
     }
@@ -49,7 +63,7 @@ const DeleteChild = () => {
         <Form.Text className="text-muted">
         *Reason for deleting the profile
         </Form.Text>
-        <Form.Control type="text" placeholder="e.g. Message" 
+        <Form.Control size="sm" as="textarea" rows={8} placeholder="e.g. Message" 
         onChange={(e) => setCommitMessage(e.target.value)}/>
       </Form.Group>
 
@@ -59,13 +73,32 @@ const DeleteChild = () => {
         *name of the person who delete the child profile
         </Form.Text>
         <Form.Control type="text" placeholder="e.g. Kamal Perera" 
-        onChange={(e) => setCommittedByUserName(e.target.value)}/>
+        //onChange={(e) => setCommittedByUserName(e.target.value)}
+        value={userInfo.email}
+        />
       </Form.Group>
+      <br></br>
 
-
-      <Button variant="primary" type="submit">
-        Submit
+      <Row style={{ marginBottom: "10px" }}>
+      <Col sm={6}>
+      <Button variant="danger" type="submit">
+        Delete
       </Button>
+      </Col>
+      <Col sm={6}>
+      <div class="d-flex justify-content-end">
+        <Link to='/profile/viewProfile'>
+          <Button variant="primary" >
+          Cancel
+          </Button>
+        </Link>
+      
+      </div>
+      
+      </Col>
+      </Row>
+
+     
     </Form>
     </MyCardBody>
     </MyCard>

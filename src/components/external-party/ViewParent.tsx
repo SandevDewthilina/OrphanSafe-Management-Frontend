@@ -17,9 +17,16 @@ const ViewParent = () => {
   const [deleteRole] = useDeleteParentProfileMutation();
 
   const handleDelete = async (roleId) => {
-    const resp = await deleteRole({ userIdToDelete: roleId });
+
+    if (confirm('Are you sure?')) {
+      const resp = await deleteRole({ userIdToDelete: roleId });
     if (isError) toast.error(resp.data.message);
     if (isSuccess) refetch();
+      } else {
+        //action cancelled
+        console.log('Cancel is clicked.');
+      }
+    
   };
 
 
