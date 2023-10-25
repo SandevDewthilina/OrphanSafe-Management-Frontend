@@ -76,5 +76,6 @@ export const {
   useRejectMutation,
   useChatMutation,
   useGetChatQuery,
-  useReportMutation
+  useReportMutation,
+  useAdminDashboardQuery
 } = userApiSlice;
