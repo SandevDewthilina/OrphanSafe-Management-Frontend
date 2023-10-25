@@ -7,21 +7,7 @@ import "../../assets/css/dropdown.css"
 
 
 const ResponseBulkForm = () => {
-    // React state to manage selected options
-  const [selectedOptions, setSelectedOptions] = useState();
-
-  // Array of all options
-  const optionList = [
-    { value: "medical check up", label: "Medical check up" },
-    { value: "property case", label: "Property case" },
-    { value: "mental checkup", label: "Mental checkup" },
-    
-  ];
-
-  // Function triggered on selection
-  function handleSelect(data) {
-    setSelectedOptions(data);
-  }
+   
     return (
       <Row>
         <Col sm={7}>
@@ -49,13 +35,13 @@ const ResponseBulkForm = () => {
       </Form.Group>
 
      
-      <Form.Group controlId="formFileMultiple" className="mb-3">
+      {/* <Form.Group controlId="formFileMultiple" className="mb-3">
       <Form.Label>Response Documents</Form.Label>
         <Form.Text className="text-muted">
         *documents related response
         </Form.Text>
         <Form.Control type="file" multiple size="sm" style={{ padding: '0.05rem 0.3rem 0.2rem 0.3rem' }}/>
-      </Form.Group>
+      </Form.Group> */}
 
 
     
