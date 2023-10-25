@@ -173,16 +173,31 @@ const router = createBrowserRouter(
         />
 
         <Route path="/editProfile" element={<EditProfile />} />
-        <Route path="/edit/editChildProfile" element={<EditChildProfileScreen />} />
-        <Route path="/edit/editStaffProfile" element={<EditStaffProfileScreen />} />
-        <Route path="/edit/editParentProfile" element={<EditParentProfileScreen />} />
-        <Route path="/edit/editSocialWorkerProfile" element={<EditSocialWorkerScreen />} />
+        <Route
+          path="/edit/editChildProfile"
+          element={<EditChildProfileScreen />}
+        />
+        <Route
+          path="/edit/editStaffProfile"
+          element={<EditStaffProfileScreen />}
+        />
+        <Route
+          path="/edit/editParentProfile"
+          element={<EditParentProfileScreen />}
+        />
+        <Route
+          path="/edit/editSocialWorkerProfile"
+          element={<EditSocialWorkerScreen />}
+        />
 
         <Route
           path="/inquiry/CreateInquiry"
           element={<CreateInquiryScreen />}
         />
-        <Route path="/delete/deleteChildProfile" element={<DeleteChildScreen />} />
+        <Route
+          path="/delete/deleteChildProfile"
+          element={<DeleteChildScreen />}
+        />
 
         <Route path="/chat/StaffChat" element={<StaffChatScreen />} />
       </Route>
@@ -229,6 +244,10 @@ const router = createBrowserRouter(
         <Route
           path="/dashboard/External"
           element={<ExternalDashboardScreen />}
+        />
+        <Route
+          path="/parent/viewChildProfileList/overview"
+          element={<ChildOverviewScreen />}
         />
         <Route
           path="/cases/viewCases/overview"

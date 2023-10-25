@@ -23,7 +23,10 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      if (userInfo.roleName === "orphanageManager" ||userInfo.roleName === "orphanageStaff") {
+      if (
+        userInfo.roleName === "orphanageManager" ||
+        userInfo.roleName === "orphanageStaff"
+      ) {
         console.log("in");
         navigate("/");
       } else if (

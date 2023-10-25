@@ -9,6 +9,8 @@ export const DELETE_CASE_LOG_URL = "/api/case/deleteCaseLog";
 export const GET_CASE_INVITATION_BY_USER_ID_URL =
   "/api/case/getCaseInvitationByUserId";
 export const CREATE_CASE_URL = "/api/case/createCase";
+export const CREATE_PROFILE_REQUEST_URL = "/api/case/createProfileRequest";
+export const CREATE_CASE_REQUEST_URL = "/api/case/createCaseRequest";
 export const GET_CASE_LOGS_LIST_URL = "/api/case/getCaseLogsByCaseId";
 export const GET_CASE_LOG_BY_LOGID_URL = "/api/case/getCaseLogBycaseLogId";
 export const GET_EXTERNAL_DASHBOARD_CHILD_PROFILES =
@@ -20,6 +22,8 @@ export const GET_EXTERNAL_DASHBOARD_CASE_ASSIGN =
 export const GET_CASES_FOR_ORPHANAGE_URL = "/api/case/getCasesForOrphanage";
 export const GET_PENDING_CASE_URL = "/api/case/getPendingCaseForDashBoard";
 export const GET_ONGOING_CASE_URL = "/api/case/getOngoingCaseForDashBoard";
+export const GET_ADOPTION_CASE_URL = "/api/case/getAdoptionRequest";
+export const GET_FUNDING_FOR_ORPHANAGE_URL = "/api/case/getFundForOrphanage";
 export const CREATE_CASE_LOG_URL = "/api/case/createCaseLog";
 export const GET_CASE_LIST_BY_USERID_URL = "/api/case/getCaseListByUserId";
 export const UPDATE_CASE_STATE_URL = "/api/case/updateCaseState";
@@ -32,6 +36,7 @@ export const GET_SOCIAL_WORKER_NAME_LIST =
   "/api/profile/getSocialWorkerNameListByOrphanageId";
 
 export const GET_CHILD_LIST_URL = "/api/profile/getChildProfileList";
+export const GET_CHILD_LIST_FOR_PARENT_URL = "/api/profile/viewChildProfilesForParents";
 export const GET_STAFF_LIST_URL = "/api/profile/getStaffProfileList";
 export const GET_STAFF_COUNT_FOR_ORPHANAGE_URL =
   "/api/profile/getStaffCountForOrphanage";
@@ -76,6 +81,7 @@ export const APPROVE_URL = "/api/admin/approve";
 export const REJECT_URL = "/api/admin/reject";
 export const CHAT_URL = "/api/admin/chat";
 export const REPORT_URL = "/api/admin/report";
+export const ADMIN_DASHBOARD_URL = "/api/admin//adminDashboard";
 
 export const determineAppServerKey = () => {
   const vapidPublicKey =

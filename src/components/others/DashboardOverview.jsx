@@ -6,6 +6,8 @@ import {
   useGetPendingCaseQuery,
   useGetOngoingCaseQuery,
   useGetCasesForOrphanageQuery,
+  useGetAdoptionForOrphanageQuery,
+  useGetFundingForOrphanageQuery,
 } from "../../slices/caseApiSlice";
 import {
   useGetStaffCountForOrphanageQuery,
@@ -14,6 +16,8 @@ import {
 } from "../../slices/profileApiSlice";
 
 const DashboardOverview = () => {
+  const fundRes = useGetFundingForOrphanageQuery();
+  const adoptionRes = useGetAdoptionForOrphanageQuery();
   const pendingRes = useGetPendingCaseQuery();
   const ongoingRes = useGetOngoingCaseQuery();
   const profileCount = useGetProfileCountForOrphanageQuery();
@@ -190,32 +194,25 @@ const DashboardOverview = () => {
               <Table responsive bordered style={{ width: "100%" }}>
                 <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>Case Description</th>
-                    <th>State Date</th>
+                    <th>Fund ID</th>
+                    <th>Donor</th>
+                    <th>Amount</th>
+                    <th>Fund Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
+                  {fundRes.isSuccess && fundRes.data.fund ? (
+                    fundRes.data.fund.map((data) => (
+                      <tr>
+                        <td>{data.Id}</td>
+                        <td>{data.Name}</td>
+                        <td>{data.Amount}</td>
+                        <td>{data.Date.substring(0, 10)}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <div>Loading</div>
+                  )}
                 </tbody>
               </Table>
             </MyCard>
@@ -227,32 +224,23 @@ const DashboardOverview = () => {
               <Table responsive bordered style={{ width: "100%" }}>
                 <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>Case Description</th>
-                    <th>State Date</th>
+                    <th>Mother name</th>
+                    <th>Father name</th>
+                    <th>description</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
-                  <tr>
-                    <td>234</td>
-                    <td>Adoption case-3445- child Id 22332</td>
-                    <td>2023-12-12</td>
-                  </tr>
+                  {adoptionRes.isSuccess && adoptionRes.data.cases ? (
+                    adoptionRes.data.cases.map((data) => (
+                      <tr>
+                        <td>{data.NameOfMother}</td>
+                        <td>{data.NameOfFather}</td>
+                        <td>{data.Description}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <div>Loading</div>
+                  )}
                 </tbody>
               </Table>
             </MyCard>
