@@ -85,7 +85,7 @@ export const APPROVE_URL = "/api/admin/approve";
 export const REJECT_URL = "/api/admin/reject";
 export const CHAT_URL = "/api/admin/chat";
 export const REPORT_URL = "/api/admin/report";
-
+export const BULK_RESPONSE_URL = "/api/admin/BulkResponse";
 export const GET_CHILD_DOC_URL = "/api/profile/getChildDocs";
 export const ADMIN_DASHBOARD_URL = "/api/admin//adminDashboard";
 export const GET_INQUIRY_LIST_URL = "/api/profile/getInquiryList";

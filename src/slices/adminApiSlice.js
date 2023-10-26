@@ -6,7 +6,7 @@ import {
   CHAT_URL,
   REPORT_URL,
   ADMIN_DASHBOARD_URL,
-
+  BULK_RESPONSE_URL,
   GET_INQUIRY_LIST_URL
 } from "../config";
 export const userApiSlice = apiSlice.injectEndpoints({
@@ -62,6 +62,13 @@ export const userApiSlice = apiSlice.injectEndpoints({
     }),
 
 
+    bulkResponse: builder.mutation({
+      query: (data) => ({
+        url: BULK_RESPONSE_URL,
+        method: "POST",
+        body: data,
+      }),
+    }),
 
 
     report: builder.mutation({
@@ -80,6 +87,7 @@ export const {
   useChatMutation,
   useGetChatQuery,
   useReportMutation,
-  useAdminDashboardQuery
+  useAdminDashboardQuery,
+  useBulkResponseMutation,
 
 } = userApiSlice;
