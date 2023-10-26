@@ -7,6 +7,8 @@ import "../../assets/css/dropdown.css"
 
 
 const ResponseBulkForm = () => {
+  const [Subject, setSubject] = useState("");
+  const [Description,setDescription]= useState("");
    
     return (
       <Row>
