@@ -10,41 +10,42 @@ import { LinkContainer } from "react-router-bootstrap";
 import {
   useGetApprovalListQuery,
   useApproveMutation,
-  useRejectMutation
+  useRejectMutation,
 } from "../../slices/adminApiSlice";
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
 
 const OverallApproval = () => {
   const tableRef = useRef(null);
 
-  const { data, isError, isLoading, isSuccess, refetch } = useGetApprovalListQuery();
-  console.log(data)
+  const { data, isError, isLoading, isSuccess, refetch } =
+    useGetApprovalListQuery();
+  console.log(data);
   const [approveReq, approveStat] = useApproveMutation();
   const [rejectReq, rejectStat] = useRejectMutation();
 
   const approve = async (approvalId) => {
     const resp = await approveReq({
-      approvalId: approvalId
+      approvalId: approvalId,
     });
     if (approveStat.isError) {
       toast.error("approval Error");
-    } 
+    }
     if (approveStat.isSuccess) {
-      toast.success("approval success")
-      await refetch()
+      toast.success("approval success");
+      await refetch();
     }
   };
 
   const reject = async (approvalId) => {
     const resp = await rejectReq({
-      approvalId: approvalId
+      approvalId: approvalId,
     });
     if (rejectStat.isError) {
       toast.error("approval Error");
-    } 
+    }
     if (rejectStat.isSuccess) {
-      toast.success("approval success")
-      await refetch()
+      toast.success("approval success");
+      await refetch();
     }
   };
 
@@ -106,10 +107,20 @@ const OverallApproval = () => {
                             </LinkContainer>
                           </td>
                           <td>
-                            <button className="my-btn mr-2" onClick={(e) => approve(row.approvalid)}>Approve</button>
+                            <button
+                              className="my-btn mr-2"
+                              onClick={(e) => approve(row.approvalid)}
+                            >
+                              Approve
+                            </button>
                           </td>
                           <td>
-                            <button className="my-btn-danger" onClick={(e) => reject(row.approvalid)}>Reject</button>
+                            <button
+                              className="my-btn-danger"
+                              onClick={(e) => reject(row.approvalid)}
+                            >
+                              Reject
+                            </button>
                           </td>
                         </tr>
                       ))}
@@ -154,7 +165,7 @@ const OverallApproval = () => {
                     </thead>
                     <tbody>
                       {data.socialWorkerProfileRequests.map((row) => (
-                       <tr key={row.approvalid}>
+                        <tr key={row.approvalid}>
                           <td>{row.approvalid}</td>
                           <td>
                             <LinkContainer to="/admin/viewStaffProfile/overview">
@@ -173,10 +184,20 @@ const OverallApproval = () => {
                             </LinkContainer>
                           </td>
                           <td>
-                            <button className="my-btn mr-2" onClick={(e) => approve(row.approvalid)}>Approve</button>
+                            <button
+                              className="my-btn mr-2"
+                              onClick={(e) => approve(row.approvalid)}
+                            >
+                              Approve
+                            </button>
                           </td>
                           <td>
-                            <button className="my-btn-danger" onClick={(e) => reject(row.approvalid)}>Reject</button>
+                            <button
+                              className="my-btn-danger"
+                              onClick={(e) => reject(row.approvalid)}
+                            >
+                              Reject
+                            </button>
                           </td>
                         </tr>
                       ))}
@@ -232,10 +253,20 @@ const OverallApproval = () => {
                             </LinkContainer>
                           </td>
                           <td>
-                            <button className="my-btn mr-2" onClick={(e) => approve(row.approvalid)}>Approve</button>
+                            <button
+                              className="my-btn mr-2"
+                              onClick={(e) => approve(row.approvalid)}
+                            >
+                              Approve
+                            </button>
                           </td>
                           <td>
-                            <button className="my-btn-danger" onClick={(e) => reject(row.approvalid)}>Reject</button>
+                            <button
+                              className="my-btn-danger"
+                              onClick={(e) => reject(row.approvalid)}
+                            >
+                              Reject
+                            </button>
                           </td>
                         </tr>
                       ))}

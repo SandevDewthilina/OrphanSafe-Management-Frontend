@@ -34,6 +34,12 @@ const ForumCard = () => {
     }
   }, [chatData.data]);
 
+  useEffect(() => {
+    setInterval(() => {
+      chatData.refetch()
+    }, 2000);
+  },[])
+
   return (
     <div className="background">
       <h1 className="name-headers">Public Forum</h1>

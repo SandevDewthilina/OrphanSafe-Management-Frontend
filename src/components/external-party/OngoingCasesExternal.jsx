@@ -33,36 +33,37 @@ const OngoingCaseViewExternal = () => {
     // Initialize DataTable
     $(tableRef.current).DataTable();
   }, [data]);
-  return (
-    <Row>
-      <Col sm={12}>
-        <MyCard>
-          <MyCardHeader>View Cases</MyCardHeader>
-          <MyCardBody>
-            {socialRes.isError && (
-              <Col className="text-center">
-                <strong>Unexpected Error occured Sorry! :(</strong>
-              </Col>
-            )}
-            {socialRes.isLoading && (
-              <Col className="text-center">Loading Data!</Col>
-            )}
-            {socialRes.isSuccess && (
-              <div>
-                <Table
-                  responsive
-                  ref={tableRef}
-                  id="example"
-                  className="row-border"
-                  style={{ width: "100%" }}
-                >
-                  <thead>
-                    <tr>
-                      <th>Case ID</th>
-                      <th>Case Name</th>
-                      <th>Assigned By</th>
-                      <th>Child Name</th>
-                      <th>Last Update</th>
+  if (data) {
+    return (
+      <Row>
+        <Col sm={12}>
+          <MyCard>
+            <MyCardHeader>View Cases</MyCardHeader>
+            <MyCardBody>
+              {socialRes.isError && (
+                <Col className="text-center">
+                  <strong>Unexpected Error occured Sorry! :(</strong>
+                </Col>
+              )}
+              {socialRes.isLoading && (
+                <Col className="text-center">Loading Data!</Col>
+              )}
+              {socialRes.isSuccess && (
+                <div>
+                  <Table
+                    responsive
+                    ref={tableRef}
+                    id="example"
+                    className="row-border"
+                    style={{ width: "100%" }}
+                  >
+                    <thead>
+                      <tr>
+                        <th>Case ID</th>
+                        <th>Case Name</th>
+                        <th>Assigned By</th>
+                        <th>Child Name</th>
+                        <th>Last Update</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -84,16 +85,39 @@ const OngoingCaseViewExternal = () => {
                             : "Not stated"}
                         </td>
                       </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              </div>
-            )}
-          </MyCardBody>
-        </MyCard>
-      </Col>
-    </Row>
-  );
+                    </thead>
+                    <tbody>
+                      {data.caseList.map((data) => (
+                        <tr>
+                          <td>{data.CaseId}</td>
+                          <td>
+                            <Link
+                              to={`/cases/viewCases/overview?caseId=${data.CaseId}`}
+                            >
+                              <a href="#">{data.CaseName}</a>
+                            </Link>
+                          </td>
+                          <td>{data.AssignedBy}</td>
+                          <td>{data.ChildName}</td>
+                          <td>
+                            {data.LastUpdate
+                              ? data.LastUpdate.substring(0, 10)
+                              : "Not stated"}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </div>
+              )}
+            </MyCardBody>
+          </MyCard>
+        </Col>
+      </Row>
+    );
+  } else {
+    return <div>No cases To load</div>;
+  }
 };
 
 export default OngoingCaseViewExternal;
