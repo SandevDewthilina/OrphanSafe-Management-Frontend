@@ -58,10 +58,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: "GET",
         // body: data,
       }),
-
     }),
-
-
     bulkResponse: builder.mutation({
       query: (data) => ({
         url: BULK_RESPONSE_URL,
@@ -69,8 +66,6 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-
-
     report: builder.mutation({
       query: (data) => ({
         url: REPORT_URL + `?report=${data}`,
@@ -88,6 +83,5 @@ export const {
   useGetChatQuery,
   useReportMutation,
   useAdminDashboardQuery,
-  useBulkResponseMutation,
-
+  useBulkResponseMutation
 } = userApiSlice;

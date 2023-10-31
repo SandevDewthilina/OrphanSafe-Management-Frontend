@@ -64,6 +64,26 @@ const OngoingCaseViewExternal = () => {
                         <th>Assigned By</th>
                         <th>Child Name</th>
                         <th>Last Update</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.caseList.map((data) => (
+                      <tr>
+                        <td>{data.CaseId}</td>
+                        <td>
+                          <Link
+                            to={`/cases/viewCases/overview?caseId=${data.CaseId}`}
+                          >
+                            <a href="#">{data.CaseName}</a>
+                          </Link>
+                        </td>
+                        <td>{data.AssignedBy}</td>
+                        <td>{data.ChildName}</td>
+                        <td>
+                          {data.LastUpdate
+                            ? data.LastUpdate.substring(0, 10)
+                            : "Not stated"}
+                        </td>
                       </tr>
                     </thead>
                     <tbody>

@@ -10,9 +10,11 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useGetInquiryListQuery } from "../../slices/profileApiSlice";
 import { Link } from "react-router-dom";
 
-
 const InquiriesBulkResponse = () => {
   const tableRef = useRef(null);
+  
+
+  const { data, isError, isSuccess, isLoading,refetch } = useGetInquiryListQuery();
 
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
   const handleCheckboxChange = (email) => {
