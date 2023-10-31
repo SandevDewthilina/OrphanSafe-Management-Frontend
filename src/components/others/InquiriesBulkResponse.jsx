@@ -24,9 +24,6 @@ const InquiriesBulkResponse = () => {
       setSelectedCheckboxes([...selectedCheckboxes, email]);
     }
   };
-  
-
-  const { data, isError, isSuccess, isLoading,refetch } = useGetInquiryListQuery();
 
   useEffect(() => {
     // Initialize DataTable
